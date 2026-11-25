@@ -1,0 +1,7379 @@
+/* ==========================================================================
+   PORTFOLIO - KERLYN LAWRANCE
+   Stylesheet: Bagian Navigasi Desktop dengan Sentuhan Claymorphism
+   Dibuat dengan gaya "Vibe Coding" & ramah untuk pembelajaran mahasiswa.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS VARIABLES (DESIGN TOKENS)
+   Menyimpan nilai warna, font, dan bayangan agar mudah diubah dan konsisten.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Palet Warna Utama Sesuai Spesifikasi */
+  --bg-navbar: #8aabce;
+  /* Biru tua untuk bilah navigasi */
+  --bg-active: #a6c5e2;
+  /* Biru muda untuk menu aktif (tombol clay) */
+  --color-text: #754c24;
+  /* Coklat tua untuk seluruh teks navigasi */
+
+  /* Warna Pendukung */
+  --bg-body: #fedf85;
+  /* Background awal cerah (kuning hangat) */
+  --bg-home-dark: #fedf85;
+  /* Kuning tua untuk stripe wallpaper */
+  --bg-home-light: #fde9a0;
+  /* Kuning muda untuk stripe wallpaper */
+  --color-white: #ffffff;
+  /* Warna highlight untuk efek claymorphism */
+  --shadow-dark: rgba(117, 76, 36, 0.15);
+  /* Bayangan luar dengan rona coklat hangat */
+  --clay-bevel-dark: rgba(95, 131, 166, 0.45);
+  /* Bayangan bevel dalam clay (sisi kanan-bawah) */
+
+  /* Tipografi (Adobe Typekit) */
+  --font-brand: "monotalic", sans-serif;
+  /* Khusus "Kerlyn Lawrance" */
+  --font-menu: "urca", sans-serif;
+  /* Khusus kata Home, About, Journey, dll */
+  --font-daith-small: "daith-small", "urca", Georgia, serif;
+  /* Khusus "A About What I Create" */
+  --font-daith-text: "daith-text", "daith-small", cursive, serif;
+  /* Khusus "little" italic */
+
+  /* Ukuran & Border Radius */
+  --radius-pill: 9999px;
+  /* Rounded corner besar berbentuk kapsul/pill */
+  --radius-navbar: 40px;
+  /* Lengkungan sudut besar untuk container navbar */
+
+  /* Efek Claymorphism untuk Tombol Aktif
+     Konsep Clay:
+     - 1 bayangan luar (drop shadow) untuk efek mengambang/timbul
+     - 1 bayangan dalam terang (inset top-left) sebagai pantulan cahaya
+     - 1 bayangan dalam gelap (inset bottom-right) sebagai ketebalan/volume tanah liat (clay)
+  */
+  --clay-shadow-active:
+    0 8px 18px rgba(117, 76, 36, 0.14),
+    inset 2.5px 2.5px 5px rgba(255, 255, 255, 0.85),
+    inset -3px -3px 6px var(--clay-bevel-dark);
+
+  /* Efek Claymorphism Halus untuk Container Navbar */
+  --clay-shadow-navbar:
+    0 14px 30px rgba(117, 76, 36, 0.12),
+    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 5px rgba(100, 137, 173, 0.35);
+
+  /* Transisi Animasi Halus */
+  --transition-smooth: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & PENGATURAN DASAR
+   Menghilangkan margin bawaan browser dan mengatur box-sizing.
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  /* Perpindahan halus saat tautan anchor (#) diklik */
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--color-text);
+  font-family: var(--font-menu);
+  font-weight: 600;
+  /* Urca Semi Bold bawaan Typekit */
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   3. CONTAINER HEADER (PEMBUNGKUS ATAS)
+   Mengatur posisi navigasi agar melayang (floating) rapi di atas desktop.
+   -------------------------------------------------------------------------- */
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  padding: 24px 32px 12px;
+  display: flex;
+  justify-content: center;
+  /* Membuat navbar berada di tengah layar desktop */
+  pointer-events: none;
+  /* Memungkinkan interaksi kursor tembus ke background */
+}
+
+/* --------------------------------------------------------------------------
+   4. NAVIGATION BAR (BILAH UTAMA)
+   Menggunakan Flexbox dengan rounded corner besar dan warna #8aabce.
+   -------------------------------------------------------------------------- */
+.navbar {
+  pointer-events: auto;
+  position: relative;
+  overflow: visible;
+  /* Mengaktifkan kembali interaksi tombol navbar */
+  background-color: var(--bg-navbar);
+  box-shadow: var(--clay-shadow-navbar);
+  border-radius: var(--radius-navbar);
+  width: 100%;
+  max-width: 1160px;
+  /* Lebar maksimal navbar di layar desktop */
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Brand di kiri, Menu di kanan */
+  gap: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   5. BRAND / LOGO ("Kerlyn Lawrance")
+   Menggunakan font Monotalic Adobe Font dengan warna teks coklat tua.
+   -------------------------------------------------------------------------- */
+.nav-brand {
+  font-family: var(--font-brand);
+  font-size: 28px;
+  font-weight: 400;
+  /* Monotalic reguler sesuai spesifikasi Typekit */
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 8px 16px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.nav-brand:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   6. LIST MENU NAVIGASI (UL & LI)
+   Menyusun tombol menu awan secara horizontal menggunakan Flexbox.
+   -------------------------------------------------------------------------- */
+.nav-menu {
+  list-style: none;
+  /* Menghilangkan titik bullet HTML */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  /* Jarak aman lega antartombol agar awan tidak saling bertabrakan */
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+/* --------------------------------------------------------------------------
+   7. LINK MENU DASAR & TOMBOL AWAN DARI FILE ASET (.nav-link & .nav-cloud)
+   Menggunakan Font Urca Semi Bold (#754c24).
+   Tombol awan menggunakan gambar awan asli dari aset proyek yang sudah ada:
+   image/cloud-tl.webp, image/cloud-tr.webp, image/cloud-bl.webp, image/cloud-br.webp.
+   Batas horizontal dikunci rapi agar awan tidak bertabrakan satu sama lain.
+   -------------------------------------------------------------------------- */
+.nav-link {
+  font-family: var(--font-menu);
+  font-weight: 600;
+  /* Urca Semi-Bold */
+  font-size: 16px;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  /* Sudut membulat penuh (pill shape) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: var(--transition-smooth);
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Modifikasi Khusus Cloud Button (.nav-cloud) */
+.nav-link.nav-cloud {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  font-size: 14.5px;
+  padding: 8px 18px;
+  min-width: 76px;
+  overflow: visible;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.3s ease;
+}
+
+/* Tombol Awan Khusus Menu Panjang (Wishlight, Journey, Project, Contact) */
+.nav-link.nav-cloud-wishlight {
+  min-width: 98px;
+}
+
+.nav-link.nav-cloud-journey,
+.nav-link.nav-cloud-project,
+.nav-link.nav-cloud-contact {
+  min-width: 86px;
+}
+
+/* Gambar Awan Asli dari File Proyek (image/cloud-*.webp)
+   Batas horizontal (left: 0, right: 0, width: 100%) dikunci presisi 
+   sehingga gambar awan tidak akan pernah saling bertabrakan atau tumpang tindih.
+*/
+.nav-cloud-img {
+  position: absolute;
+  inset: -3px 0 -4px 0;
+  width: 100%;
+  height: calc(100% + 7px);
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 4px 8px rgba(117, 76, 36, 0.16)) drop-shadow(0 2px 4px rgba(255, 255, 255, 0.5));
+  transition: filter 0.3s ease,
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Teks Navigasi di Atas Awan Aset */
+.nav-link-text {
+  position: relative;
+  z-index: 2;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--color-text);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+/* --------------------------------------------------------------------------
+   8. INTERAKSI & STATE TOMBOL AWAN (HOVER, ACTIVE, PRESS)
+   -------------------------------------------------------------------------- */
+
+/* Efek Hover (Awan Terangkat Halus Tanpa Bertabrakan Samping) */
+.nav-link.nav-cloud:hover {
+  transform: translateY(-3px);
+}
+
+.nav-link.nav-cloud:hover .nav-cloud-img {
+  transform: translateY(-1px) scale(1.02);
+  filter: drop-shadow(0 8px 18px rgba(117, 76, 36, 0.26)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.85)) brightness(1.03);
+}
+
+/* Efek Menu Aktif (.nav-link.nav-cloud.active) - Awan Kuning Hangat Bercahaya */
+.nav-link.nav-cloud.active {
+  transform: translateY(-2px);
+}
+
+.nav-link.nav-cloud.active .nav-cloud-img {
+  filter:
+    drop-shadow(0 6px 14px rgba(117, 76, 36, 0.25)) drop-shadow(0 0 14px rgba(254, 223, 133, 0.95)) sepia(0.4) saturate(1.8) brightness(1.02);
+}
+
+.nav-link.nav-cloud.active .nav-link-text {
+  color: #552e0c;
+  font-weight: 800;
+}
+
+/* Hover pada Menu yang Sedang Aktif */
+.nav-link.nav-cloud.active:hover {
+  transform: translateY(-4px);
+}
+
+.nav-link.nav-cloud.active:hover .nav-cloud-img {
+  transform: translateY(-1px) scale(1.03);
+  filter:
+    drop-shadow(0 10px 22px rgba(117, 76, 36, 0.28)) drop-shadow(0 0 18px rgba(254, 223, 133, 1)) sepia(0.4) saturate(2) brightness(1.04);
+}
+
+/* Efek Ditekan / Klik (Clay Press) */
+.nav-link.nav-cloud:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.nav-link.nav-cloud:active .nav-cloud-img {
+  transform: scale(0.96);
+  filter: drop-shadow(0 2px 5px rgba(117, 76, 36, 0.18));
+}
+
+/* Fallback untuk link non-cloud jika ada */
+.nav-link:not(.nav-cloud):not(.active):hover {
+  background-color: rgba(166, 197, 226, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(117, 76, 36, 0.08);
+}
+
+.nav-link:not(.nav-cloud).active {
+  background-color: var(--bg-active);
+  color: var(--color-text);
+  box-shadow: var(--clay-shadow-active);
+  transform: translateY(-2px);
+}
+
+/* Fallback untuk link non-cloud jika ada */
+.nav-link:not(.nav-cloud):not(.active):hover {
+  background-color: rgba(166, 197, 226, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(117, 76, 36, 0.08);
+}
+
+.nav-link:not(.nav-cloud).active {
+  background-color: var(--bg-active);
+  color: var(--color-text);
+  box-shadow: var(--clay-shadow-active);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   SECTION #HOME: HERO SHOWCASE (TEMA AWAL TERANG / SUNNY MORNING)
+   Layering Sesuai Spesifikasi:
+   1. Background dekorasi (stripes kuning tua #fedf85 & kuning muda #fde9a0)
+   2. Tulisan "A little About What I Create" (Daith fonts + yellow shadow)
+   3. Awan di sekeliling border (image/cloud.webp + awan interaktif bergerak)
+   4. Border (image/border.webp) di bawah tulisan
+   Sifat: object-fit contain, tidak stretch, responsif desktop & mobile.
+   ========================================================================== */
+
+/* 1. Hero Section Wrapper */
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 110px;
+  /* Jarak aman di bawah fixed navbar */
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 2. Layer 1: Background Dekorasi Stripe Garis ke Bawah (#fedf85 & #fde9a0)
+   Bergaris vertikal ke bawah, dan bergelombang (wavy) saat disentuh kursor */
+.hero-bg-wrapper {
+  position: absolute;
+  top: -4%;
+  left: -4%;
+  width: 108%;
+  height: 108%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  contain: strict;
+  isolation: isolate;
+}
+
+.hero-wavy-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: auto;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Fallback CSS jika canvas tidak aktif */
+.hero-bg-stripes-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-home-light);
+  background-image: repeating-linear-gradient(90deg,
+      var(--bg-home-dark),
+      var(--bg-home-dark) 44px,
+      var(--bg-home-light) 44px,
+      var(--bg-home-light) 88px);
+  z-index: -1;
+}
+
+/* 3. Hero Stage Container
+   Dibuat 100% responsif, memakai aspect-ratio asli border.webp (3345 x 1985 ~ 1.685).
+   Memastikan tidak stretch dan muat di layar desktop maupun mobile. */
+.hero-stage {
+  position: relative;
+  width: min(86vw, calc((100vh - 140px) * 1.685), 980px);
+  aspect-ratio: 3345 / 1985;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  margin: 0 auto;
+  pointer-events: auto;
+}
+
+/* 4. Layer 4: Border Frame (image/border.webp)
+   Berada di bawah tulisan dengan efek clay halus dan object-fit: contain */
+.hero-border-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  /* Layer 4: di bawah awan & tulisan */
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-border-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 16px 36px rgba(117, 76, 36, 0.16));
+}
+
+/* 5. Layer 3: Awan di Sekeliling Border (image/cloud.webp)
+   Menggunakan koordinat relatif terhadap border sehingga 100% responsif di semua ukuran layar */
+/* 5. Layer 3: Awan di Sekeliling Border (image/cloud.webp)
+   Menggunakan koordinat relatif terhadap border sehingga 100% responsif di semua ukuran layar */
+.hero-clouds-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  /* Layer awan di atas border */
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Gambar Aset Utama Awan untuk kompatibilitas */
+.hero-cloud-main {
+  display: none;
+}
+
+.cloud-cluster {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 12;
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  padding: 8px;
+  /* Area sentuh ekstra responsif */
+}
+
+/* Container animasi floating terpisah agar tidak mengganggu transform hover/touch */
+.cloud-bob-inner {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: translateZ(0);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.cloud-cluster img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 6px 14px rgba(117, 76, 36, 0.12));
+  transition: filter 0.3s ease;
+  pointer-events: none;
+}
+
+/* Koordinat Relatif Presisi terhadap Border (Ukuran awan proporsional & manis, tidak kegedean) */
+.cloud-tl {
+  left: -5%;
+  top: -4%;
+  width: 20%;
+}
+
+.cloud-tl .cloud-bob-inner {
+  animation: cloudFloatTL 5.6s ease-in-out infinite;
+}
+
+.cloud-tr {
+  left: 87%;
+  top: 2%;
+  width: 14%;
+}
+
+.cloud-tr .cloud-bob-inner {
+  animation: cloudFloatTR 6.4s ease-in-out infinite 0.5s;
+}
+
+.cloud-bl {
+  left: -7%;
+  top: 58%;
+  width: 17%;
+}
+
+.cloud-bl .cloud-bob-inner {
+  animation: cloudFloatBL 6.0s ease-in-out infinite 1.1s;
+}
+
+.cloud-br {
+  left: 83%;
+  top: 66%;
+  width: 22%;
+}
+
+.cloud-br .cloud-bob-inner {
+  animation: cloudFloatBR 6.8s ease-in-out infinite 0.3s;
+}
+
+/* Efek Interaktif Ketika Awan Disentuh Kursor / Jari (Responsif Bergerak, Membal & Membesar) */
+.cloud-cluster:hover,
+.cloud-cluster.active-touch {
+  filter: drop-shadow(0 16px 32px rgba(117, 76, 36, 0.35));
+}
+
+/* Jeda animasi bobbing saat kursor menyentuh agar gerakan sentuhan terlihat penuh */
+.cloud-cluster:hover .cloud-bob-inner,
+.cloud-cluster.active-touch .cloud-bob-inner,
+.cloud-cluster.is-puffing .cloud-bob-inner {
+  animation-play-state: paused;
+}
+
+/* Animasi Squish-Bounce Fluffy saat Awan Disentuh / Diklik */
+@keyframes cloudSquishBounce {
+  0% {
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: scale(1.28, 0.82) translateY(6px) rotate(-4deg);
+  }
+
+  50% {
+    transform: scale(0.92, 1.22) translateY(-22px) rotate(5deg);
+  }
+
+  75% {
+    transform: scale(1.12, 0.94) translateY(-10px) rotate(-2deg);
+  }
+
+  90% {
+    transform: scale(0.98, 1.04) translateY(-3px) rotate(1deg);
+  }
+
+  100% {
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+}
+
+.cloud-cluster.is-puffing {
+  animation: cloudSquishBounce 0.82s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+}
+
+/* 6. Layer 2: Tulisan "A Little About What I Create"
+   Font Daith Small & Daith Text Italic, Glow Yellow Shadow Sesuai Gambar Referensi */
+.hero-text-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  /* Layer 2: paling atas di atas border */
+  text-align: center;
+  max-width: 82%;
+  /* Menjaga teks aman di dalam bidang coklat kanvas */
+  width: 100%;
+  pointer-events: auto;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* Eyebrow di atas judul hero: "KERLYN'S CREATIVE SPACE" */
+.hero-eyebrow {
+  opacity: 0;
+  transform: translateY(-14px);
+  will-change: transform, opacity;
+  line-height: 1;
+}
+
+.hero-eyebrow-text {
+  font-family: var(--font-menu);
+  font-size: clamp(0.76rem, 1.35vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: clamp(2px, 0.35vw, 4.5px);
+  color: #fedf85;
+  text-transform: uppercase;
+  display: inline-block;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(254, 223, 133, 0.7);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.hero-eyebrow-text:hover {
+  transform: scale(1.05);
+  color: #ffffff;
+}
+
+.hero-star-sparkle {
+  color: #ffd447;
+  font-size: 0.95em;
+  display: inline-block;
+  margin: 0 4px;
+  animation: heroSparkleTwinkle 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px #fedf85);
+}
+
+.hero-eyebrow .hero-star-sparkle:last-child {
+  animation-delay: 1.2s;
+}
+
+@keyframes heroSparkleTwinkle {
+
+  0%,
+  100% {
+    transform: scale(0.9) rotate(0deg);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scale(1.3) rotate(25deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 12px #ffe699);
+  }
+}
+
+/* Tagline di bawah judul hero: "GRAPHIC DESIGN PORTFOLIO" */
+.hero-tagline {
+  opacity: 0;
+  transform: translateY(14px);
+  will-change: transform, opacity;
+  line-height: 1;
+  margin-top: clamp(10px, 1.4vw, 16px);
+  /* Dinaikkan sedikit agar pas, seimbang, dan tidak terlalu bawah */
+}
+
+.hero-tagline-text {
+  font-family: var(--font-menu);
+  font-size: clamp(0.70rem, 1.25vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: clamp(2.2px, 0.38vw, 4.8px);
+  color: #ffffff;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 6px 18px;
+  background: rgba(254, 223, 133, 0.18);
+  border: 1.5px solid rgba(254, 223, 133, 0.55);
+  border-radius: var(--radius-pill);
+  box-shadow:
+    0 4px 14px rgba(117, 76, 36, 0.15),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.65);
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.35),
+    0 0 12px rgba(254, 223, 133, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.hero-tagline-text:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: rgba(254, 223, 133, 0.32);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-title {
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  line-height: 1.12;
+}
+
+.hero-title-row {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+/* Tulisan "A", "About", dan "What I Create" (Daith Small) */
+.font-daith-small {
+  font-family: var(--font-daith-small);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1.8rem, 3.4vw, 3.4rem);
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  display: inline-block;
+  cursor: default;
+  /* Shadow glow kuning keemasan persis sesuai gambar referensi user */
+  text-shadow:
+    0 0 5px #ffe699,
+    0 0 12px #fedf85,
+    0 0 22px rgba(254, 223, 133, 0.8),
+    0 0 38px rgba(254, 223, 133, 0.45);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.font-daith-small:hover {
+  transform: translateY(-4px) scale(1.08);
+}
+
+/* Tulisan "Little" (Daith Small - Dibuat Tegak Normal & Sejajar) */
+.font-daith-script {
+  font-family: var(--font-daith-small);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1.8rem, 3.4vw, 3.4rem);
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  display: inline-block;
+  cursor: default;
+  transform: none;
+  /* Shadow glow kuning keemasan persis sesuai gambar referensi user */
+  text-shadow:
+    0 0 5px #ffe699,
+    0 0 12px #fedf85,
+    0 0 22px rgba(254, 223, 133, 0.8),
+    0 0 38px rgba(254, 223, 133, 0.45);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.font-daith-script:hover {
+  transform: translateY(-4px) scale(1.08);
+}
+
+/* 7. Animasi Pop Up Hero Text Saat Website Dibuka
+   Setiap kata membal dan melompat pop-up berurutan secara dinamis & elastis */
+.pop-word {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.12) translateY(55px);
+  filter: blur(6px);
+  will-change: transform, opacity, filter;
+  transform-origin: center bottom;
+}
+
+.hero-revealed .pop-word {
+  animation: wordBouncyPopUp 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes wordBouncyPopUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.12) translateY(55px);
+    filter: blur(6px);
+  }
+
+  55% {
+    opacity: 1;
+    transform: scale(1.22) translateY(-14px);
+    filter: blur(0);
+  }
+
+  75% {
+    transform: scale(0.92) translateY(5px);
+  }
+
+  90% {
+    transform: scale(1.05) translateY(-2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Staggered Delay untuk Efek Pop Up Berurutan yang Menggemaskan */
+.hero-revealed .anim-pop-1 {
+  animation-delay: 0.12s;
+}
+
+.hero-revealed .anim-pop-2 {
+  animation-delay: 0.28s;
+}
+
+.hero-revealed .anim-pop-3 {
+  animation-delay: 0.44s;
+}
+
+.hero-revealed .anim-pop-4 {
+  animation-delay: 0.64s;
+}
+
+.hero-revealed .anim-pop-5 {
+  animation-delay: 0.76s;
+}
+
+.hero-revealed .anim-pop-6 {
+  animation-delay: 0.88s;
+}
+
+.hero-revealed .hero-eyebrow {
+  animation: heroFadeSlideDown 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.12s;
+}
+
+.hero-revealed .hero-tagline {
+  animation: heroFadeSlideUp 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.95s;
+}
+
+@keyframes heroFadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px);
+    filter: blur(4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes heroFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .pop-word,
+  .hero-eyebrow,
+  .hero-tagline {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none !important;
+  }
+
+  .hero-scroll-cue {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .scroll-cue-wheel,
+  .scroll-cue-arrow {
+    animation: none !important;
+  }
+}
+
+/* 8. Keyframe Animasi Floating Awan Alami (Bergerak Lincah & Mengapung) */
+@keyframes cloudFloatTL {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  30% {
+    transform: translate3d(-14px, -18px, 0) rotate(-3deg) scale(1.05);
+  }
+
+  65% {
+    transform: translate3d(12px, -8px, 0) rotate(2deg) scale(0.97);
+  }
+}
+
+@keyframes cloudFloatTR {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  35% {
+    transform: translate3d(16px, -18px, 0) rotate(3deg) scale(1.06);
+  }
+
+  70% {
+    transform: translate3d(-10px, -6px, 0) rotate(-2deg) scale(0.96);
+  }
+}
+
+@keyframes cloudFloatBL {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  40% {
+    transform: translate3d(-15px, 16px, 0) rotate(-3deg) scale(1.05);
+  }
+
+  75% {
+    transform: translate3d(10px, -8px, 0) rotate(2.5deg) scale(0.97);
+  }
+}
+
+@keyframes cloudFloatBR {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  35% {
+    transform: translate3d(16px, 18px, 0) rotate(3deg) scale(1.06);
+  }
+
+  70% {
+    transform: translate3d(-12px, -10px, 0) rotate(-2.5deg) scale(0.96);
+  }
+}
+
+/* ==========================================================================
+   HERO STARS LAYER (#home)
+   Dekorasi Bintang Clay Kuning & Biru yang Mengapung, Bergerak & Berpendar
+   ========================================================================== */
+.hero-stars-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.hero-stars-layer .clay-star {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: auto;
+  cursor: pointer;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+  animation: heroStarFloatMotion 4.6s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(254, 223, 133, 0.85)) drop-shadow(0 2px 6px rgba(117, 76, 36, 0.15));
+}
+
+.hero-stars-layer .hero-star-1 {
+  animation-delay: 0s;
+  animation-duration: 4.4s;
+}
+
+.hero-stars-layer .hero-star-2 {
+  animation-delay: 0.7s;
+  animation-duration: 5.2s;
+}
+
+.hero-stars-layer .hero-star-3 {
+  animation-delay: 1.4s;
+  animation-duration: 4.8s;
+}
+
+.hero-stars-layer .hero-star-4 {
+  animation-delay: 2.1s;
+  animation-duration: 5.6s;
+}
+
+.hero-stars-layer .hero-star-5 {
+  animation-delay: 2.8s;
+  animation-duration: 4.5s;
+}
+
+.hero-stars-layer .hero-star-6 {
+  animation-delay: 3.5s;
+  animation-duration: 5.0s;
+}
+
+.hero-stars-layer .hero-star-7 {
+  animation-delay: 1.0s;
+  animation-duration: 4.9s;
+}
+
+.hero-stars-layer .hero-star-8 {
+  animation-delay: 2.3s;
+  animation-duration: 5.3s;
+}
+
+@keyframes heroStarFloatMotion {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    opacity: 0.88;
+  }
+
+  30% {
+    transform: translate3d(6px, -16px, 0) rotate(16deg) scale(1.18);
+    opacity: 1;
+  }
+
+  65% {
+    transform: translate3d(-5px, 10px, 0) rotate(-14deg) scale(0.92);
+    opacity: 0.82;
+  }
+}
+
+.hero-stars-layer .clay-star:hover,
+.hero-stars-layer .clay-star.active-star {
+  transform: scale(1.55) rotate(360deg) !important;
+  animation-play-state: paused;
+}
+
+/* ==========================================================================
+   8B. SCROLL DOWN DIRECTION CUE (#home)
+   Petunjuk arah scroll ke bawah untuk next page dalam Bahasa Inggris.
+   Didesain transparan, minimalis (tidak ngeblock), dan teks tetap terbaca tajam.
+   ========================================================================== */
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 16px;
+  /* Transparan (glass sheer) tanpa blok warna padat */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 16px rgba(117, 76, 36, 0.05);
+  color: #6d441e;
+  text-decoration: none;
+  font-family: var(--font-menu);
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
+  opacity: 0;
+  animation:
+    scrollCueEntrance 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards,
+    scrollCueFloat 2.6s ease-in-out 1.65s infinite;
+  transition:
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.28s ease,
+    color 0.25s ease,
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+.hero-scroll-cue:hover {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.75);
+  color: #4a2c0f;
+  transform: translateX(-50%) translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(117, 76, 36, 0.10);
+}
+
+.hero-scroll-cue:active {
+  transform: translateX(-50%) translateY(0) scale(0.97);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Mouse Icon Animation */
+.scroll-cue-mouse {
+  width: 15px;
+  height: 23px;
+  border: 1.8px solid #6d441e;
+  border-radius: 9px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.85));
+}
+
+.scroll-cue-wheel {
+  position: absolute;
+  top: 3.5px;
+  width: 2.5px;
+  height: 5px;
+  background-color: #6d441e;
+  border-radius: 2px;
+  animation: mouseWheelSlide 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes mouseWheelSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateY(6px);
+  }
+
+  90% {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll Cue Text (Tulisan tajam & terbaca jelas dengan glow halus) */
+.scroll-cue-text {
+  font-family: var(--font-menu);
+  font-size: 13px;
+  font-weight: 700;
+  color: #6d441e;
+  letter-spacing: 0.35px;
+  white-space: nowrap;
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.95),
+    0 0 10px rgba(255, 255, 255, 0.65);
+}
+
+/* Bouncing Down Arrow */
+.scroll-cue-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6d441e;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.85));
+  animation: arrowDownBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes arrowDownBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+/* Floating animation for cue pill */
+@keyframes scrollCueFloat {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(5px);
+  }
+}
+
+/* Entrance animation */
+@keyframes scrollCueEntrance {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(18px) scale(0.92);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* Class saat user scroll ke bawah (fade out halus agar tidak menumpuk di section lain) */
+.hero-scroll-cue.is-hidden {
+  opacity: 0 !important;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(14px) scale(0.92) !important;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   DESAIN RESPONSIF NAVBAR & HEADER (HORIZONTAL SCALING)
+   Mempertahankan layout & estetika asli desktop di seluruh perangkat:
+   - Nama brand ("Kerlyn Lawrance") tetap di kiri
+   - Tombol awan ("Home", "About", "Journey", "Project", "Wishlight", "Contact")
+     tetap tersusun horizontal di kanan
+   - Ukuran font, padding, jarak, dan dimensi awan diskalakan proporsional
+   ========================================================================== */
+
+/* 1. Layar Laptop / Small Desktop (<= 1024px) */
+@media (max-width: 1024px) {
+  .header-wrapper {
+    padding: 18px 24px 10px;
+  }
+
+  .navbar {
+    padding: 10px 18px;
+    gap: 14px;
+  }
+
+  .nav-brand {
+    font-size: 24px;
+    padding: 6px 12px;
+  }
+
+  .nav-menu {
+    gap: 10px;
+  }
+
+  .nav-link.nav-cloud {
+    font-size: 13.5px;
+    padding: 7px 14px;
+    min-width: 70px;
+  }
+
+  .nav-link.nav-cloud-wishlight {
+    min-width: 86px;
+  }
+
+  .nav-link.nav-cloud-journey,
+  .nav-link.nav-cloud-project,
+  .nav-link.nav-cloud-contact {
+    min-width: 76px;
+  }
+}
+
+/* 2. Layar Tablet (768px - 900px, e.g. iPad Portrait) */
+@media (max-width: 900px) {
+  .header-wrapper {
+    padding: 14px 16px 8px;
+  }
+
+  .navbar {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  .nav-brand {
+    font-size: 20px;
+    padding: 4px 8px;
+    letter-spacing: 0.2px;
+  }
+
+  .nav-menu {
+    gap: 6px;
+  }
+
+  .nav-link.nav-cloud {
+    padding: 5px 10px;
+    font-size: 12px;
+    min-width: 58px;
+  }
+
+  .nav-link.nav-cloud-wishlight {
+    min-width: 74px;
+  }
+
+  .nav-link.nav-cloud-journey,
+  .nav-link.nav-cloud-project,
+  .nav-link.nav-cloud-contact {
+    min-width: 64px;
+  }
+}
+
+/* 3. Layar Phablet / Mobile Landscape (481px - 767px) */
+@media (max-width: 767px) {
+  .header-wrapper {
+    padding: 10px 12px 6px;
+  }
+
+  .navbar {
+    padding: 6px 10px;
+    gap: 8px;
+    border-radius: 20px;
+  }
+
+  .nav-brand {
+    font-size: 16px;
+    padding: 3px 6px;
+    letter-spacing: 0.2px;
+  }
+
+  .nav-menu {
+    gap: 5px;
+  }
+
+  .nav-link.nav-cloud {
+    padding: 4px 8px;
+    font-size: 11px;
+    min-width: 48px;
+  }
+
+  .nav-link.nav-cloud-wishlight {
+    min-width: 62px;
+  }
+
+  .nav-link.nav-cloud-journey,
+  .nav-link.nav-cloud-project,
+  .nav-link.nav-cloud-contact {
+    min-width: 52px;
+  }
+}
+
+/* 4. Layar Standard Mobile (361px - 480px, e.g. 430px, 390px, 375px) */
+@media (max-width: 480px) {
+  .header-wrapper {
+    padding: 8px 8px 4px;
+  }
+
+  .navbar {
+    padding: 5px 8px;
+    gap: 5px;
+    border-radius: 16px;
+  }
+
+  .nav-brand {
+    font-size: 13.5px;
+    padding: 2px 4px;
+    letter-spacing: 0.2px;
+  }
+
+  .nav-menu {
+    gap: 3.5px;
+  }
+
+  .nav-link.nav-cloud {
+    font-size: 9.5px;
+    padding: 3px 5px;
+    min-width: 36px;
+  }
+
+  .nav-link.nav-cloud-wishlight {
+    min-width: 48px;
+  }
+
+  .nav-link.nav-cloud-journey,
+  .nav-link.nav-cloud-project,
+  .nav-link.nav-cloud-contact {
+    min-width: 40px;
+  }
+
+  .nav-link-text {
+    letter-spacing: 0;
+    font-weight: 700;
+  }
+}
+
+/* 5. Layar Small Mobile (<= 360px, e.g. 320px) */
+@media (max-width: 360px) {
+  .header-wrapper {
+    padding: 6px 6px 4px;
+  }
+
+  .navbar {
+    padding: 4px 6px;
+    gap: 4px;
+    border-radius: 14px;
+  }
+
+  .nav-brand {
+    font-size: 11.5px;
+    padding: 1px 3px;
+    letter-spacing: 0;
+  }
+
+  .nav-menu {
+    gap: 2.5px;
+  }
+
+  .nav-link.nav-cloud {
+    font-size: 8.5px;
+    padding: 2px 4px;
+    min-width: 30px;
+  }
+
+  .nav-link.nav-cloud-wishlight {
+    min-width: 42px;
+  }
+
+  .nav-link.nav-cloud-journey,
+  .nav-link.nav-cloud-project,
+  .nav-link.nav-cloud-contact {
+    min-width: 34px;
+  }
+
+  .nav-link-text {
+    letter-spacing: 0;
+    font-weight: 700;
+  }
+}
+
+/* 9. Desain Responsif Section Hero (Tablet & Mobile) */
+@media (max-width: 900px) {
+  .hero-section {
+    padding-top: 100px;
+    padding-bottom: 24px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .hero-stage {
+    width: min(86vw, 680px);
+  }
+
+  .hero-text-wrap {
+    max-width: 82%;
+    gap: 10px;
+  }
+
+  /* Posisi awan proporsional pada layar tablet */
+  .cloud-tl {
+    left: -5%;
+    top: -3%;
+    width: 21%;
+  }
+
+  .cloud-tr {
+    left: 86%;
+    top: 3%;
+    width: 15%;
+  }
+
+  .cloud-bl {
+    left: -7%;
+    top: 58%;
+    width: 18%;
+  }
+
+  .cloud-br {
+    left: 83%;
+    top: 66%;
+    width: 22%;
+  }
+
+  .hero-scroll-cue {
+    bottom: 16px;
+    padding: 6px 14px;
+    gap: 8px;
+  }
+
+  .scroll-cue-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    padding-top: 86px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-height: calc(100vh - 30px);
+  }
+
+  .hero-stage {
+    width: min(88vw, 390px);
+  }
+
+  .hero-text-wrap {
+    max-width: 86%;
+    gap: 7px;
+  }
+
+  .hero-eyebrow-text {
+    font-size: 0.68rem;
+    letter-spacing: 1.8px;
+  }
+
+  .hero-tagline-text {
+    font-size: 0.64rem;
+    letter-spacing: 1.8px;
+    padding: 4px 12px;
+  }
+
+  .hero-stars-layer .clay-star {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hero-title {
+    gap: 6px;
+  }
+
+  .hero-title-row {
+    gap: 8px;
+  }
+
+  .font-daith-small {
+    font-size: clamp(1.15rem, 4.4vw, 1.55rem);
+    text-shadow:
+      0 0 4px #ffe699,
+      0 0 10px #fedf85,
+      0 0 18px rgba(254, 223, 133, 0.7);
+  }
+
+  .font-daith-script {
+    font-size: clamp(1.35rem, 5.2vw, 1.95rem);
+    text-shadow:
+      0 0 4px #ffe699,
+      0 0 10px #fedf85,
+      0 0 18px rgba(254, 223, 133, 0.7);
+  }
+
+  /* Ukuran awan mobile proporsional, rapi, dan tidak terpotong */
+  .cloud-tl {
+    left: -4%;
+    top: -3%;
+    width: 20%;
+  }
+
+  .cloud-tr {
+    left: 86%;
+    top: 3%;
+    width: 14%;
+  }
+
+  .cloud-bl {
+    left: -5%;
+    top: 58%;
+    width: 17%;
+  }
+
+  .cloud-br {
+    left: 83%;
+    top: 66%;
+    width: 21%;
+  }
+
+  .hero-scroll-cue {
+    bottom: 12px;
+    padding: 5px 12px;
+    gap: 7px;
+  }
+
+  .scroll-cue-mouse {
+    width: 13px;
+    height: 20px;
+    border-width: 1.5px;
+    border-radius: 7px;
+  }
+
+  .scroll-cue-wheel {
+    width: 2px;
+    height: 4px;
+    top: 3px;
+  }
+
+  .scroll-cue-text {
+    font-size: 11px;
+    letter-spacing: 0.2px;
+  }
+
+  .scroll-cue-arrow svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Section Anchor Spacing untuk Navigasi Cepat */
+section {
+  scroll-margin-top: 0;
+}
+
+/* ==========================================================================
+   SECTION #ABOUT: ABOUT ME (TEMA PERALIHAN: SIANG HANGAT MENUJU SORE/LANGIT SENJA)
+   Fitur:
+   1. Transisi Scroll: Awan hancur (shatter / disperse) menjadi karakter branding.webp
+   2. Galeri Foto Kiri: foto1.webp & foto4.webp interaktif membesar saat disentuh kursor
+   3. Awan-awan dekoratif sekeliling layout (aset awan sebelumnya)
+   4. Bintang Biru & Kuning interaktif (twinkle, hover spin 360°, sparkle glow)
+   5. Teks Hello (Monotalic) & Deskripsi Profil (Urca) dengan kartu claymorphism
+   ========================================================================== */
+
+/* ==========================================================================
+   CUSTOM BRANDING CURSOR (image/branding-cursor.png)
+   Diterapkan pada seluruh halaman mulai dari About, Journey, Project,
+   Wishlight, hingga Contact, termasuk seluruh elemen interaktif di dalamnya.
+   ========================================================================== */
+#about,
+.about-section,
+#journey,
+.journey-section,
+#project,
+.project-section,
+#wishlight,
+.play-section,
+#contact,
+.contact-section,
+.project-modal-backdrop,
+.lantern-modal-backdrop {
+  cursor: -webkit-image-set(url('../image/branding-cursor.png') 1x,
+      url('../image/branding-cursor@2x.png') 2x) 17 4,
+    url('../image/branding-cursor.png') 17 4,
+    url('../image/branding.webp') 17 4,
+    url('../image/branding.webp') 17 4,
+    auto;
+}
+
+#about *,
+.about-section *,
+#journey *,
+.journey-section *,
+#project *,
+.project-section *,
+#wishlight *,
+.play-section *,
+#contact *,
+.contact-section *,
+.project-modal-backdrop *,
+.lantern-modal-backdrop * {
+  cursor: -webkit-image-set(url('../image/branding-cursor.png') 1x,
+      url('../image/branding-cursor@2x.png') 2x) 17 4,
+    url('../image/branding-cursor.png') 17 4,
+    url('../image/branding.webp') 17 4,
+    url('../image/branding.webp') 17 4,
+    auto;
+}
+
+/* Seluruh elemen interaktif di About, Journey, Project, Wishlight, Contact tetap menampilkan custom branding cursor (dengan fallback pointer) */
+#about a,
+#about button,
+#about [role="button"],
+#journey a,
+#journey button,
+#journey [role="button"],
+#project a,
+#project button,
+#project [role="button"],
+#wishlight a,
+#wishlight button,
+#wishlight [role="button"],
+#contact a,
+#contact button,
+#contact [role="button"],
+.project-modal-backdrop button,
+.project-modal-backdrop a,
+.lantern-modal-backdrop button,
+.lantern-modal-backdrop a,
+#about .about-cloud,
+#about .clay-star,
+#about .photo-card,
+#about .branding-avatar-badge,
+#about .falling-brand-item,
+#journey .journey-cloud,
+#journey .journey-photo-card,
+#journey .timeline-header,
+#journey .accordion-toggle,
+#project .project-cloud,
+#project .project-clay-block,
+#project .tag-filter-btn,
+#wishlight .play-cloud,
+#wishlight .wish-preset-item,
+#wishlight .wish-mode-btn,
+#wishlight .sky-star-lantern,
+#wishlight .floating-nav-pill,
+#wishlight .secret-admin-trigger,
+#wishlight .mini-lantern-choice,
+#wishlight .submit-lantern-btn,
+#wishlight .modal-close-btn,
+#wishlight .passcode-key-btn,
+#wishlight .admin-action-btn,
+#wishlight .delete-wish-btn,
+#wishlight .wishlight-canvas-layer,
+#wishlight canvas,
+#contact .contact-cloud,
+#contact .contact-card,
+#contact .topic-pill,
+#contact .contact-submit-btn,
+#contact .back-to-top-btn,
+#contact .footer-nav a,
+#contact .footer-brand-logo,
+.modal-cta-btn {
+  cursor: -webkit-image-set(url('../image/branding-cursor.png') 1x,
+      url('../image/branding-cursor@2x.png') 2x) 17 4,
+    url('../image/branding-cursor.png') 17 4,
+    url('../image/branding.webp') 17 4,
+    url('../image/branding.webp') 17 4,
+    pointer !important;
+}
+
+/* Form input teks tetap menampilkan text cursor agar nyaman saat mengetik */
+#contact input[type="text"],
+#contact input[type="email"],
+#contact textarea,
+.lantern-modal-backdrop input,
+.lantern-modal-backdrop textarea {
+  cursor: text !important;
+}
+
+#contact button:disabled,
+.lantern-modal-backdrop button:disabled {
+  cursor: not-allowed !important;
+}
+
+#about,
+.about-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 85px 24px 20px;
+  /* Pas di tengah screen di bawah navbar */
+  scroll-margin-top: 0 !important;
+  /* Gradien hangat dari kuning #home ke langit senja periwinkle lembut */
+  background: linear-gradient(180deg, #fedf85 0%, #fde6aa 14%, #fbf3df 35%, #ebf3fb 68%, #dce9f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 1. Transisi Scroll: Awan Hancur (Shatter Disperse) Menjadi Karakter branding.webp */
+.cloud-shatter-transition {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90vw, 480px);
+  height: 220px;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.shatter-piece {
+  position: absolute;
+  width: 130px;
+  will-change: transform, opacity, filter;
+  transition:
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.65s ease,
+    filter 0.65s ease;
+}
+
+.shatter-piece img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(117, 76, 36, 0.16));
+}
+
+.shatter-piece.piece-1 {
+  top: 10px;
+  left: 20px;
+}
+
+.shatter-piece.piece-2 {
+  top: 0;
+  right: 20px;
+}
+
+.shatter-piece.piece-3 {
+  bottom: 20px;
+  left: 40px;
+}
+
+.shatter-piece.piece-4 {
+  bottom: 10px;
+  right: 40px;
+}
+
+/* Keadaan Saat Awan Hancur Terhembus Saat Di-scroll */
+.is-shattered .shatter-piece.piece-1 {
+  transform: translate(-160px, -110px) rotate(-45deg) scale(0.1);
+  opacity: 0;
+  filter: blur(8px);
+}
+
+.is-shattered .shatter-piece.piece-2 {
+  transform: translate(170px, -100px) rotate(40deg) scale(0.1);
+  opacity: 0;
+  filter: blur(8px);
+}
+
+.is-shattered .shatter-piece.piece-3 {
+  transform: translate(-150px, 110px) rotate(-35deg) scale(0.1);
+  opacity: 0;
+  filter: blur(8px);
+}
+
+.is-shattered .shatter-piece.piece-4 {
+  transform: translate(160px, 120px) rotate(48deg) scale(0.1);
+  opacity: 0;
+  filter: blur(8px);
+}
+
+/* 1.5 Transisi Page Home ke About: Karakter branding.webp Berjatuhan */
+.falling-branding-transition {
+  position: absolute;
+  top: -120px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 240px);
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 7;
+}
+
+.falling-brand-item {
+  position: absolute;
+  top: -90px;
+  left: var(--fb-left, 50%);
+  width: var(--fb-size, 60px);
+  will-change: transform, opacity;
+  pointer-events: none;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  filter: drop-shadow(0 6px 16px rgba(117, 76, 36, 0.16));
+}
+
+.falling-brand-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Animasi melayang jatuh sekali saja (single-shot, tidak loop/infinite) dan cepat selesai */
+.is-falling .falling-brand-item {
+  visibility: visible;
+  pointer-events: auto;
+  animation: brandFallingOnce var(--fb-dur, 1.5s) cubic-bezier(0.25, 0.46, 0.45, 0.94) 1 forwards;
+  animation-delay: var(--fb-delay, 0s);
+}
+
+@keyframes brandFallingOnce {
+  0% {
+    transform: translateY(0) rotate(var(--fb-rot, 0deg)) scale(0.6);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.95;
+    transform: translateY(120px) rotate(calc(var(--fb-rot, 0deg) * 0.8)) scale(1.05);
+  }
+
+  65% {
+    opacity: 0.95;
+    transform: translateY(520px) rotate(calc(var(--fb-rot, 0deg) * -1.4)) scale(0.95);
+  }
+
+  85% {
+    opacity: 0.5;
+    transform: translateY(750px) rotate(calc(var(--fb-rot, 0deg) * 1.6)) scale(0.8);
+  }
+
+  100% {
+    transform: translateY(960px) rotate(calc(var(--fb-rot, 0deg) * 2)) scale(0.65);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Interaktif saat avatar yang jatuh disentuh kursor */
+.falling-brand-item:hover {
+  transform: scale(1.35) rotate(25deg) !important;
+  filter: drop-shadow(0 14px 26px rgba(117, 76, 36, 0.35));
+}
+
+/* 2. Background Dekorasi Bintang Biru & Kuning Interaktif */
+.about-stars-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.clay-star {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: auto;
+  cursor: pointer;
+  will-change: transform, filter;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+  animation: starAmbientFloat 4.8s ease-in-out infinite;
+}
+
+.clay-star .star-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Bintang Kuning Hangat */
+.star-yellow .star-icon {
+  fill: #ffd447;
+  filter: drop-shadow(0 0 10px rgba(254, 223, 133, 0.95)) drop-shadow(0 4px 10px rgba(117, 76, 36, 0.18));
+}
+
+/* Bintang Biru Langit Lembut */
+.star-blue .star-icon {
+  fill: #8aabce;
+  filter: drop-shadow(0 0 10px rgba(138, 171, 206, 0.95)) drop-shadow(0 4px 10px rgba(117, 76, 36, 0.18));
+}
+
+/* Efek Interaktif Bintang Saat Disentuh Kursor (Berputar 360°, Membesar & Berpendar Terang) */
+.clay-star:hover,
+.clay-star.active-star {
+  transform: scale(1.48) rotate(360deg);
+}
+
+.star-yellow:hover .star-icon,
+.star-yellow.active-star .star-icon {
+  filter: drop-shadow(0 0 18px #fedf85) drop-shadow(0 0 28px #ffe599) drop-shadow(0 6px 14px rgba(117, 76, 36, 0.28));
+}
+
+.star-blue:hover .star-icon,
+.star-blue.active-star .star-icon {
+  filter: drop-shadow(0 0 18px #8aabce) drop-shadow(0 0 28px #a6c5e2) drop-shadow(0 6px 14px rgba(117, 76, 36, 0.28));
+}
+
+/* Animasi Twinkle untuk Bintang */
+@keyframes starAmbientFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(12deg) scale(1.08);
+  }
+}
+
+.star-1 {
+  animation-delay: 0s;
+}
+
+.star-2 {
+  animation-delay: 0.6s;
+}
+
+.star-3 {
+  animation-delay: 1.2s;
+}
+
+.star-4 {
+  animation-delay: 1.8s;
+}
+
+.star-5 {
+  animation-delay: 2.4s;
+}
+
+.star-6 {
+  animation-delay: 3.0s;
+}
+
+.star-7 {
+  animation-delay: 3.6s;
+}
+
+.star-8 {
+  animation-delay: 4.2s;
+}
+
+/* 3. Awan Dekorasi Sekeliling About Section */
+.about-clouds-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.about-cloud {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.about-cloud img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(117, 76, 36, 0.12));
+}
+
+.about-cloud-1 {
+  top: 6%;
+  left: 1%;
+  width: 15%;
+  max-width: 170px;
+}
+
+.about-cloud-2 {
+  top: 4%;
+  right: 2%;
+  width: 13%;
+  max-width: 150px;
+}
+
+.about-cloud-3 {
+  bottom: 5%;
+  left: 3%;
+  width: 14%;
+  max-width: 160px;
+}
+
+.about-cloud-4 {
+  bottom: 4%;
+  right: 2%;
+  width: 16%;
+  max-width: 180px;
+}
+
+.about-cloud:hover {
+  transform: scale(1.2) translateY(-8px);
+  filter: drop-shadow(0 14px 28px rgba(117, 76, 36, 0.28));
+}
+
+/* 4. Container Grid Utama About (2 Kolom: Kiri Foto, Kanan Konten) */
+.about-container {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) 1.25fr;
+  align-items: center;
+  gap: 52px;
+}
+
+/* 5. Galeri Foto di Sisi Kiri (Interaktif Membesar saat Disentuh Kursor) */
+.about-photos-column {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-cards-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 520px;
+}
+
+.photo-card {
+  position: absolute;
+  border-radius: 26px;
+  background: #ffffff;
+  padding: 12px 12px 42px;
+  box-shadow:
+    0 16px 36px rgba(117, 76, 36, 0.14),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.95),
+    inset -2px -2px 4px rgba(117, 76, 36, 0.06);
+  cursor: pointer;
+  user-select: none;
+  will-change: transform, box-shadow;
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease,
+    z-index 0s;
+}
+
+/* Dekorasi Tape/Solasi Clay di Sudut Foto */
+.photo-tape {
+  position: absolute;
+  width: 70px;
+  height: 22px;
+  background-color: rgba(254, 223, 133, 0.7);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), 0 2px 5px rgba(117, 76, 36, 0.1);
+  border-radius: 4px;
+  z-index: 5;
+}
+
+.tape-top {
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+}
+
+.tape-bottom {
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%) rotate(4deg);
+}
+
+/* Posisi Awal Foto 1: Portrait Close-up */
+.photo-card-1 {
+  top: 15px;
+  left: 0;
+  width: 68%;
+  transform: rotate(-3.5deg);
+  z-index: 2;
+}
+
+/* Posisi Awal Foto 2: Full-body Standing */
+.photo-card-2 {
+  bottom: 15px;
+  right: 0;
+  width: 65%;
+  transform: rotate(4.2deg);
+  z-index: 3;
+}
+
+.photo-frame-inner {
+  position: relative;
+  width: 100%;
+}
+
+.photo-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 18px;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.photo-badge {
+  position: absolute;
+  bottom: -32px;
+  left: 6px;
+  right: 6px;
+  text-align: center;
+  font-family: var(--font-menu);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Efek Interaktif Ketika Foto Disentuh Kursor (Jelas Membesar, Tegak, & Melayang ke Depan) */
+.photo-card:hover,
+.photo-card.is-active {
+  transform: scale(1.18) rotate(0deg) translateY(-8px) !important;
+  z-index: 25 !important;
+  box-shadow:
+    0 30px 60px rgba(117, 76, 36, 0.30),
+    inset 2.5px 2.5px 5px rgba(255, 255, 255, 1);
+}
+
+/* 6. Kolom Kanan: Header Hello, Avatar Branding, & Kartu Profil */
+.about-content-column {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header Hello & Avatar Branding Row */
+.about-header-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Badge Avatar Karakter Branding yang Muncul dari Awan */
+.branding-avatar-badge {
+  position: relative;
+  width: 95px;
+  height: 95px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  padding: 6px;
+  box-shadow:
+    0 12px 28px rgba(117, 76, 36, 0.16),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.95),
+    inset -2px -2px 4px rgba(117, 76, 36, 0.1);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  will-change: transform;
+  animation: avatarFloat 5.2s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+
+.avatar-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  background-color: #f7e6b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.branding-img {
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.avatar-sparkle {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 18px;
+  color: #ffd447;
+  filter: drop-shadow(0 0 6px #fedf85);
+  animation: sparkleTwinkle 2.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.branding-avatar-badge:hover {
+  transform: scale(1.14) rotate(5deg);
+  box-shadow:
+    0 18px 36px rgba(117, 76, 36, 0.25),
+    0 0 20px rgba(254, 223, 133, 0.6),
+    inset 2px 2px 4px rgba(255, 255, 255, 1);
+}
+
+.branding-avatar-badge:hover .avatar-ring {
+  background-color: #fde9a0;
+}
+
+/* Feedback tactile ketika avatar ring ditekan kursor / sentuhan */
+.branding-avatar-badge:active,
+.branding-avatar-badge.is-pressed {
+  animation: avatarPressBounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  box-shadow:
+    0 6px 14px rgba(117, 76, 36, 0.20),
+    0 0 25px rgba(254, 223, 133, 0.8),
+    inset 2px 2px 5px rgba(117, 76, 36, 0.18) !important;
+}
+
+@keyframes avatarPressBounce {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  25% {
+    transform: scale(0.85) rotate(-6deg);
+  }
+
+  60% {
+    transform: scale(1.22) rotate(8deg);
+  }
+
+  85% {
+    transform: scale(0.96) rotate(-2deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes avatarFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(-2deg);
+  }
+}
+
+@keyframes sparkleTwinkle {
+
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.3) rotate(20deg);
+    opacity: 1;
+  }
+}
+
+/* Teks Greeting */
+.about-greeting-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-subtag {
+  font-family: var(--font-menu);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #a1703e;
+}
+
+/* Tulisan "Hello!" Menggunakan Font Monotalic (ejv1ahk.css) dan Animasi Pop Up */
+.about-hello-title {
+  font-family: var(--font-brand);
+  font-size: clamp(2.8rem, 4.8vw, 4.2rem);
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.1;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  /* Glow keemasan halus */
+  text-shadow:
+    0 0 6px #ffe699,
+    0 0 16px #fedf85,
+    0 0 28px rgba(254, 223, 133, 0.6);
+}
+
+.hello-pop-word {
+  display: inline-flex;
+  align-items: baseline;
+  cursor: inherit;
+}
+
+.hello-pop-char {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.12) translateY(45px);
+  filter: blur(5px);
+  will-change: transform, opacity, filter;
+  transform-origin: center bottom;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hello-pop-char:hover {
+  transform: translateY(-8px) scale(1.22) rotate(-4deg);
+}
+
+/* Saat Section About Terlihat, Huruf-huruf Pop Up Berurutan */
+.about-hello-revealed .hello-pop-char {
+  animation: helloBouncyPop 0.82s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--c-delay, 0s);
+}
+
+@keyframes helloBouncyPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.12) translateY(45px);
+    filter: blur(5px);
+  }
+
+  55% {
+    opacity: 1;
+    transform: scale(1.26) translateY(-14px);
+    filter: blur(0);
+  }
+
+  75% {
+    transform: scale(0.92) translateY(4px);
+  }
+
+  90% {
+    transform: scale(1.06) translateY(-2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Kartu Claymorphism Deskripsi Profil */
+.about-card-clay {
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 2.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 34px;
+  padding: 32px 36px;
+  box-shadow:
+    0 18px 40px rgba(117, 76, 36, 0.12),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.95),
+    inset -2px -2px 5px rgba(117, 76, 36, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Highlight Pills */
+.about-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.clay-pill {
+  font-family: var(--font-menu);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(254, 223, 133, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow:
+    0 4px 10px rgba(117, 76, 36, 0.06),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.9);
+  transition: var(--transition-smooth);
+}
+
+.clay-pill:hover {
+  background: rgba(254, 223, 133, 0.65);
+  transform: translateY(-2px);
+}
+
+/* Teks Paragraf Menggunakan Font Urca (nvv8uhi.css) */
+.about-paragraph {
+  font-family: var(--font-menu);
+  font-weight: 600;
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: #5d3b1b;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.15px;
+}
+
+.highlight-name {
+  color: #754c24;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 10px rgba(254, 223, 133, 0.5);
+}
+
+/* Divider Kartu dengan Ikon Star */
+.about-card-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 2px 0;
+  opacity: 0.65;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(117, 76, 36, 0.25), transparent);
+}
+
+.divider-star {
+  color: #ffd447;
+  font-size: 16px;
+  filter: drop-shadow(0 0 4px #fedf85);
+}
+
+/* Tombol CTA Claymorphism */
+.about-actions-row {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.about-cta-btn {
+  font-family: var(--font-menu);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-text);
+  text-decoration: none;
+  background-color: var(--bg-active);
+  padding: 11px 24px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--clay-shadow-active);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+  user-select: none;
+}
+
+.about-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 24px rgba(117, 76, 36, 0.20),
+    inset 2.5px 2.5px 5px rgba(255, 255, 255, 0.95),
+    inset -3px -3px 6px var(--clay-bevel-dark);
+}
+
+.about-cta-btn:active {
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
+   DESAIN RESPONSIF UNTUK SECTION #ABOUT (TABLET & MOBILE)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .about-section {
+    padding-top: 85px;
+    padding-bottom: 30px;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 650px;
+    transform: none !important;
+  }
+
+  .about-photos-column {
+    margin-bottom: 10px;
+  }
+
+  .photo-cards-wrapper {
+    max-width: 400px;
+    height: 480px;
+  }
+
+  .about-cloud-1 {
+    top: 2%;
+    left: -2%;
+    width: 22%;
+  }
+
+  .about-cloud-2 {
+    top: 1%;
+    right: -2%;
+    width: 20%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-section {
+    padding-top: 75px;
+    padding-bottom: 25px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .about-container {
+    gap: 30px;
+    transform: none !important;
+  }
+
+  .photo-cards-wrapper {
+    max-width: 320px;
+    height: 390px;
+  }
+
+  .photo-card {
+    padding: 8px 8px 34px;
+    border-radius: 20px;
+  }
+
+  .photo-badge {
+    bottom: -26px;
+    font-size: 11.5px;
+  }
+
+  .about-header-row {
+    gap: 14px;
+  }
+
+  .branding-avatar-badge {
+    width: 78px;
+    height: 78px;
+  }
+
+  .about-hello-title {
+    font-size: 2.5rem;
+  }
+
+  .about-card-clay {
+    padding: 22px 20px;
+    border-radius: 26px;
+    gap: 14px;
+  }
+
+  .about-paragraph {
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+
+  .clay-pill {
+    font-size: 11.5px;
+    padding: 5px 10px;
+  }
+
+  .clay-star {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ==========================================================================
+   BAGIAN KETIGA (JOURNEY SECTION)
+   - Layout 2 Kolom Responsif (Foto Interaktif di Kiri, Accordion di Kanan)
+   - Transisi Warna: Dari Kuning Hangat (#about) Menuju Biru Senja/Langit (#d0e1f5)
+   - Tipografi:
+     * "Experiences, Education, Expertise": Font nvv8uhi.css (urca semibold) #8aabce
+     * "Publication Division Member, Committee, UPH": Font tpw5sfc.css (daith-small)
+     * Isi informasi lainnya: Font nvv8uhi.css (urca semibold) #754c24
+   - Interaksi Foto: foto3.webp bertransformasi menjadi foto2.webp saat hover/sentuh
+   - Interaksi Accordion: Terbuka mulus ketika kursor menekan header
+   ========================================================================== */
+
+/* Utility Tipografi & Warna Sesuai Permintaan Pengguna */
+.font-urca {
+  font-family: var(--font-menu);
+  /* "urca", sans-serif dari nvv8uhi.css */
+  font-weight: 600;
+}
+
+.font-daith {
+  font-family: var(--font-daith-small);
+  /* "daith-small", serif dari tpw5sfc.css */
+  font-weight: 400;
+}
+
+.color-blue {
+  color: #8aabce !important;
+  /* Biru spesifik yang diminta */
+}
+
+.color-brown {
+  color: #754c24 !important;
+  /* Coklat hangat spesifik yang diminta */
+}
+
+/* Container Utama Section Journey */
+.journey-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /* Latar belakang tersambung mulus dari ujung bawah #about (#dce9f6) menuju senja pastel lembut */
+  background: linear-gradient(180deg, #dce9f6 0%, #d5e4f4 20%, #c9def1 45%, #bcd6ed 70%, #adcce9 100%);
+  padding: 130px 24px 110px;
+  overflow: hidden;
+  z-index: 6;
+}
+
+/* Bintang Dekoratif Senja Halus */
+.journey-stars-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Awan Dekorasi Sekeliling Journey Section */
+.journey-clouds-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.journey-cloud {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 3;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.journey-cloud img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 10px 22px rgba(117, 76, 36, 0.12));
+  opacity: 0.94;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.journey-cloud:hover img,
+.journey-cloud.active-touch img {
+  opacity: 1;
+  filter: drop-shadow(0 16px 32px rgba(117, 76, 36, 0.25));
+}
+
+.journey-cloud-1 {
+  top: 2%;
+  left: 8%;
+  width: 14%;
+  max-width: 165px;
+}
+
+.journey-cloud-1 .cloud-bob-inner {
+  animation: cloudFloatTR 6.6s ease-in-out infinite;
+}
+
+.journey-cloud-1 img {
+  transform: scaleX(-1) rotate(-8deg);
+}
+
+.journey-cloud-2 {
+  top: 32%;
+  right: -2.5%;
+  width: 16%;
+  max-width: 190px;
+}
+
+.journey-cloud-2 .cloud-bob-inner {
+  animation: cloudFloatBR 7.2s ease-in-out infinite 0.7s;
+}
+
+.journey-cloud-2 img {
+  transform: rotate(6deg) scale(1.1);
+}
+
+.journey-cloud-3 {
+  top: 60%;
+  left: -3%;
+  width: 15%;
+  max-width: 175px;
+}
+
+.journey-cloud-3 .cloud-bob-inner {
+  animation: cloudFloatBL 5.8s ease-in-out infinite 1.2s;
+}
+
+.journey-cloud-3 img {
+  transform: scaleX(-1) rotate(10deg);
+}
+
+.journey-cloud-4 {
+  bottom: 2%;
+  right: 10%;
+  width: 15%;
+  max-width: 175px;
+}
+
+.journey-cloud-4 .cloud-bob-inner {
+  animation: cloudFloatTL 6.2s ease-in-out infinite 0.4s;
+}
+
+.journey-cloud-4 img {
+  transform: rotate(-10deg) scale(1.05);
+}
+
+/* Grid 2 Kolom Journey: Kiri Konten Accordion, Kanan Foto */
+.journey-container {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1.25fr minmax(360px, 1fr);
+  align-items: start;
+  gap: 52px;
+}
+
+/* ==========================================================================
+   KOLOM KANAN: FOTO INTERAKTIF (foto3.webp berubah jadi foto2.webp & menetap)
+   ========================================================================== */
+.journey-photo-column {
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+}
+
+.journey-photo-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 26px;
+  background: #ffffff;
+  padding: 14px 14px 20px;
+  box-shadow:
+    0 20px 42px rgba(117, 76, 36, 0.16),
+    inset 2.5px 2.5px 5px rgba(255, 255, 255, 0.95),
+    inset -2.5px -2.5px 5px rgba(117, 76, 36, 0.08);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  transform: rotate(1.5deg);
+}
+
+.journey-photo-card:hover {
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow:
+    0 28px 60px rgba(117, 76, 36, 0.24),
+    0 0 24px rgba(254, 223, 133, 0.4),
+    inset 2.5px 2.5px 5px rgba(255, 255, 255, 1);
+}
+
+/* Tombol Download My CV di Bawah Foto Journey */
+.cv-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #fedf85 0%, #f6cb60 50%, #e6aa28 100%);
+  color: #754c24 !important;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 13px 30px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 8px 24px rgba(117, 76, 36, 0.16),
+    0 2px 8px rgba(230, 170, 40, 0.25),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+  user-select: none;
+}
+
+.cv-download-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 14px 32px rgba(117, 76, 36, 0.22),
+    0 4px 14px rgba(230, 170, 40, 0.4),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95);
+  background: linear-gradient(135deg, #ffea9f 0%, #fedf85 50%, #f6cb60 100%);
+  color: #5c3814 !important;
+}
+
+.cv-download-btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 4px 12px rgba(117, 76, 36, 0.16);
+}
+
+.cv-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #754c24;
+  transition: transform 0.3s ease;
+}
+
+.cv-download-btn:hover .cv-btn-icon {
+  transform: translateY(2px);
+}
+
+/* ==========================================================================
+   MINI GAME: HOPPING THROUGH MY JOURNEY (#journey)
+   1. Preview Card di Bawah Tombol Download My CV
+   2. Square 1:1 Aspect Ratio Modal Overlay
+   3. HUD, Kontrol Sentuh Mobile & Layar Status Permainan
+   ========================================================================== */
+
+/* 1. Preview Card di Kolom Kanan #journey */
+.journey-game-card {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, #eaf3fd 0%, #d8e9f9 55%, #cde2f6 100%);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 26px;
+  box-shadow:
+    0 16px 36px rgba(117, 76, 36, 0.12),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.95),
+    inset -2px -2px 4px rgba(138, 171, 206, 0.18);
+  padding: 24px 22px 22px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease,
+    border-color 0.3s ease;
+}
+
+.journey-game-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow:
+    0 24px 48px rgba(117, 76, 36, 0.2),
+    0 0 24px rgba(254, 223, 133, 0.4),
+    inset 2px 2px 4px rgba(255, 255, 255, 1);
+  border-color: #fedf85;
+}
+
+/* Area Ilustrasi Bebek di Atas Awan & Bintang */
+.game-card-art {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.game-card-cloud-base {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 190px;
+  pointer-events: none;
+}
+
+.card-cloud-img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(138, 171, 206, 0.25));
+}
+
+.game-card-duck-wrap {
+  position: relative;
+  z-index: 2;
+  animation: previewDuckHop 3.2s ease-in-out infinite alternate;
+}
+
+.game-card-duck-img {
+  width: 95px;
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgba(117, 76, 36, 0.25));
+  transition: transform 0.3s ease;
+}
+
+.journey-game-card:hover .game-card-duck-img {
+  transform: scale(1.06) rotate(-2deg);
+}
+
+@keyframes previewDuckHop {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Bintang-bintang Dekoratif di Kartu */
+.game-card-star {
+  position: absolute;
+  color: #f6cb60;
+  pointer-events: none;
+  animation: previewStarTwinkle 2.4s ease-in-out infinite alternate;
+}
+
+.star-card-1 {
+  top: 18px;
+  left: 28px;
+  font-size: 18px;
+  animation-delay: 0.1s;
+}
+
+.star-card-2 {
+  top: 14px;
+  right: 32px;
+  font-size: 20px;
+  animation-delay: 0.8s;
+}
+
+.star-card-3 {
+  bottom: 24px;
+  right: 48px;
+  font-size: 14px;
+  animation-delay: 1.5s;
+}
+
+@keyframes previewStarTwinkle {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+    text-shadow: 0 0 10px #fedf85;
+  }
+}
+
+/* Teks & Konten Kartu Preview */
+.game-card-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #754c24;
+  background: #fedf85;
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 6px rgba(230, 170, 40, 0.25);
+  margin-bottom: 6px;
+}
+
+.game-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #5c3814;
+  margin: 4px 0 6px;
+  line-height: 1.25;
+}
+
+.game-card-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #634832;
+  opacity: 0.9;
+  margin: 0 0 12px;
+  max-width: 340px;
+  margin-inline: auto;
+}
+
+.game-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(254, 223, 133, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  color: #754c24;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 22px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(230, 170, 40, 0.18);
+  transition: all 0.3s ease;
+}
+
+.journey-game-card:hover .game-card-action {
+  background: #fedf85;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(230, 170, 40, 0.35);
+}
+
+.game-card-cta-arrow {
+  font-size: 14px;
+  transition: transform 0.25s ease;
+}
+
+.journey-game-card:hover .game-card-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   2. SQUARE MODAL OVERLAY (1:1 ASPECT RATIO)
+   ========================================================================== */
+.game-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 25, 44, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 10000;
+  display: none !important;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.game-modal-backdrop.is-open {
+  display: flex !important;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.game-square-container {
+  position: relative;
+  width: min(540px, 92vw);
+  aspect-ratio: 1 / 1;
+  max-height: 90vh;
+  border: 6px solid #ffffff;
+  border-radius: 32px;
+  background: linear-gradient(180deg, #bfe3fc 0%, #d8ecfe 50%, #eff7ff 100%);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(254, 223, 133, 0.22),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95);
+  overflow: hidden;
+  transform: scale(0.92) translateY(18px);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-modal-backdrop.is-open .game-square-container {
+  transform: scale(1) translateY(0);
+}
+
+/* Tombol Tutup X di Atas Kanan Frame */
+.game-modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid rgba(117, 76, 36, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  color: #754c24;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.game-modal-close-btn:hover {
+  transform: scale(1.1) rotate(90deg);
+  background: #fedf85;
+  color: #5c3814;
+}
+
+/* Canvas Permainan */
+#journeyGameCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   3. GAMEPLAY HUD BAR
+   ========================================================================== */
+.game-hud-bar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.hud-pill {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #754c24;
+  box-shadow: 0 4px 12px rgba(117, 76, 36, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.hud-pill .hud-icon {
+  color: #f6cb60;
+  font-size: 15px;
+}
+
+.hud-controls-group {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hud-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  color: #754c24;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(117, 76, 36, 0.12);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.hud-btn:hover {
+  transform: scale(1.08);
+  background: #fedf85;
+}
+
+/* Kontrol Touch Mobile (Kiri & Kanan) */
+.game-mobile-touch-bar {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.game-touch-btn {
+  pointer-events: auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  color: #754c24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(117, 76, 36, 0.18);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.game-touch-btn:active {
+  transform: scale(0.92);
+  background: #fedf85;
+}
+
+/* ==========================================================================
+   4. LAYAR OVERLAY (START, PAUSE, GAME OVER)
+   ========================================================================== */
+.game-state-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(235, 245, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  color: #5c3814;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.game-state-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.state-overlay-content {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: auto;
+}
+
+/* Art Ilustrasi Start & Game Over */
+.start-art-wrap,
+.celebrate-art-wrap {
+  position: relative;
+  width: 160px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.start-cloud-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  pointer-events: none;
+}
+
+.start-cloud-img {
+  width: 100%;
+  height: auto;
+}
+
+.start-duck-img,
+.celebrate-duck-img {
+  position: relative;
+  width: 80px;
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(117, 76, 36, 0.25));
+  animation: modalDuckFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes modalDuckFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.decor-sparkle,
+.celebrate-star {
+  position: absolute;
+  color: #f6cb60;
+  pointer-events: none;
+  animation: previewStarTwinkle 2s infinite alternate;
+}
+
+.sp1 { top: 6px; left: 16px; font-size: 18px; }
+.sp2 { top: 0; right: 18px; font-size: 16px; animation-delay: 0.6s; }
+.sp3 { bottom: 18px; right: 10px; font-size: 14px; animation-delay: 1.2s; }
+
+.cs1 { top: 4px; left: 12px; font-size: 22px; color: #ffb300; }
+.cs2 { top: 0; right: 14px; font-size: 24px; color: #f6cb60; animation-delay: 0.4s; }
+.cs3 { bottom: 20px; left: 8px; font-size: 18px; color: #ffb300; animation-delay: 0.8s; }
+
+.state-subtag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #8c6239;
+  background: rgba(254, 223, 133, 0.4);
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.state-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #5c3814;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.state-quote {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #634832;
+  margin: 0;
+  max-width: 380px;
+}
+
+.state-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 360px;
+  margin: 4px 0 6px;
+}
+
+.inst-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+}
+
+.inst-key {
+  font-weight: 700;
+  color: #754c24;
+  background: #fedf85;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.inst-desc {
+  color: #5c3814;
+  font-weight: 600;
+}
+
+/* Tombol Aksi Start, Pause & Game Over */
+.btn-start-hopping {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #fedf85 0%, #f6cb60 50%, #e6aa28 100%);
+  color: #754c24 !important;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 12px 32px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 8px 24px rgba(230, 170, 40, 0.35),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  user-select: none;
+}
+
+.btn-start-hopping:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(230, 170, 40, 0.45);
+}
+
+.btn-start-hopping:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.pause-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-restart-game {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(117, 76, 36, 0.2);
+  color: #754c24;
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.btn-restart-game:hover {
+  background: #fedf85;
+  transform: translateY(-2px);
+}
+
+/* Hasil Skor Game Over */
+.state-result-summary {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #5c3814;
+  margin: 0;
+  max-width: 380px;
+}
+
+.highlight-score {
+  font-weight: 700;
+  color: #d97706;
+}
+
+.highlight-stars {
+  font-weight: 700;
+  color: #e6aa28;
+}
+
+.state-score-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+  margin: 4px 0 6px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 4px 12px rgba(117, 76, 36, 0.08);
+}
+
+.stat-lbl {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8c6239;
+}
+
+.stat-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: #d97706;
+}
+
+.game-over-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.game-over-btn-group .btn-start-hopping {
+  width: 100%;
+}
+
+.btn-back-journey {
+  background: transparent;
+  border: 1.5px solid rgba(117, 76, 36, 0.25);
+  color: #754c24;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-back-journey:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: #754c24;
+  transform: translateY(-2px);
+}
+
+/* Responsif Mobile untuk Kartu & Modal */
+@media (max-width: 600px) {
+  .journey-game-card {
+    max-width: 320px;
+    padding: 18px 16px 16px;
+  }
+
+  .game-card-art {
+    height: 120px;
+  }
+
+  .game-card-duck-img {
+    width: 80px;
+  }
+
+  .game-modal-backdrop {
+    padding: 12px;
+  }
+
+  .game-square-container {
+    width: min(390px, 94vw);
+    aspect-ratio: 1 / 1.2;
+    max-height: 88vh;
+    max-height: 88dvh;
+    border-width: 4px;
+    border-radius: 24px;
+  }
+
+  .game-modal-close-btn {
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .game-state-overlay {
+    padding: 16px 14px 14px;
+  }
+
+  .state-overlay-content {
+    gap: 6px;
+    max-width: 310px;
+  }
+
+  .start-duck-img,
+  .celebrate-duck-img {
+    width: 52px;
+  }
+
+  .start-art-wrap,
+  .celebrate-art-wrap {
+    width: 130px;
+    height: 68px;
+    margin-bottom: 0;
+  }
+
+  .start-cloud-base {
+    width: 110px;
+  }
+
+  .cs1 { top: 2px; left: 8px; font-size: 17px; }
+  .cs2 { top: 0; right: 10px; font-size: 18px; }
+  .cs3 { bottom: 12px; left: 6px; font-size: 14px; }
+
+  .sp1 { top: 4px; left: 10px; font-size: 14px; }
+  .sp2 { top: 0; right: 12px; font-size: 13px; }
+  .sp3 { bottom: 10px; right: 6px; font-size: 12px; }
+
+  .state-subtag {
+    font-size: 9.5px;
+    letter-spacing: 1px;
+    padding: 2.5px 10px;
+  }
+
+  .state-title {
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .state-quote {
+    font-size: 11.5px;
+    line-height: 1.4;
+    max-width: 290px;
+    margin: 0;
+  }
+
+  .state-instructions {
+    gap: 4px;
+    max-width: 290px;
+    margin: 2px 0 4px;
+  }
+
+  .inst-pill {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .inst-key {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .state-result-summary {
+    font-size: 12px;
+    line-height: 1.4;
+    max-width: 290px;
+    margin: 0;
+  }
+
+  .state-score-grid {
+    gap: 8px;
+    max-width: 280px;
+    margin: 2px 0 4px;
+  }
+
+  .stat-card {
+    padding: 6px 10px;
+    border-radius: 12px;
+    gap: 1px;
+  }
+
+  .stat-lbl {
+    font-size: 9.5px;
+  }
+
+  .stat-val {
+    font-size: 18px;
+  }
+
+  .game-over-btn-group {
+    gap: 6px;
+    max-width: 280px;
+    margin-top: 2px;
+  }
+
+  .btn-start-hopping {
+    padding: 9px 20px;
+    font-size: 13.5px;
+  }
+
+  .btn-back-journey {
+    padding: 8px 18px;
+    font-size: 12.5px;
+  }
+
+  .game-mobile-touch-bar {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .game-touch-btn {
+    width: 52px;
+    height: 52px;
+  }
+
+  .hud-pill {
+    padding: 4px 10px;
+    font-size: 12.5px;
+  }
+
+  .hud-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 12.5px;
+  }
+}
+
+@media (max-width: 360px) {
+  .game-square-container {
+    width: 96vw;
+    aspect-ratio: 1 / 1.25;
+  }
+
+  .state-title {
+    font-size: 16.5px;
+  }
+
+  .start-art-wrap,
+  .celebrate-art-wrap {
+    height: 58px;
+  }
+
+  .start-duck-img,
+  .celebrate-duck-img {
+    width: 44px;
+  }
+
+  .state-result-summary {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .stat-val {
+    font-size: 16px;
+  }
+
+  .btn-start-hopping {
+    padding: 8px 16px;
+    font-size: 12.5px;
+  }
+
+  .btn-back-journey {
+    padding: 7px 14px;
+    font-size: 11.5px;
+  }
+}
+
+@media (max-height: 480px) {
+  .game-square-container {
+    height: 94vh;
+    max-height: 94vh;
+    aspect-ratio: 1.1 / 1;
+    width: auto;
+    max-width: 94vw;
+  }
+
+  .start-art-wrap,
+  .celebrate-art-wrap {
+    display: none;
+  }
+}
+
+/* Frame Dalam Foto dengan Efek Transisi Morphing Antar Foto */
+.journey-frame-inner {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: #f7e6b8;
+  box-shadow: inset 0 2px 8px rgba(117, 76, 36, 0.18);
+}
+
+.photo-morph-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.morph-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  will-change: transform, opacity;
+}
+
+/* Foto Pertama (asset/image/foto3.webp) - Tampil Default */
+.img-front {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition:
+    opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.5s ease;
+}
+
+/* Foto Kedua (asset/image/foto2.webp) - Tersembunyi Default, Muncul saat Hover & Menetap */
+.img-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(1.08) rotate(-2deg);
+  transition:
+    opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.5s ease;
+}
+
+/* Animasi Transformasi Foto: Berubah ke foto kedua dan MENETAP di foto kedua */
+.journey-photo-card.is-swapped .img-front {
+  opacity: 0;
+  transform: scale(0.92) rotate(2deg);
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.journey-photo-card.is-swapped .img-back {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  filter: none;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+/* Badge Indikator Interaktif di Bawah Foto */
+.photo-swap-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(254, 223, 133, 0.45);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), 0 2px 6px rgba(117, 76, 36, 0.08);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.journey-photo-card:hover .photo-swap-badge,
+.journey-photo-card.is-swapped .photo-swap-badge {
+  background: rgba(254, 223, 133, 0.85);
+  transform: translateY(-2px);
+}
+
+.swap-icon {
+  font-size: 15px;
+  display: inline-block;
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.journey-photo-card:hover .swap-icon,
+.journey-photo-card.is-swapped .swap-icon {
+  transform: rotate(180deg);
+}
+
+.swap-label {
+  font-size: 12.5px;
+  color: #754c24;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   KOLOM KANAN: ACCORDION INTERAKTIF (EXPERIENCES, EDUCATION, EXPERTISE)
+   ========================================================================== */
+.journey-content-column {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header Section Journey */
+.journey-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.journey-subtag {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #8aabce;
+}
+
+.journey-main-title {
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+  color: #754c24;
+  line-height: 1.1;
+  text-shadow: 2px 2px 0px rgba(254, 223, 133, 0.6);
+}
+
+/* Daftar Item Accordion */
+.journey-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.journey-accordion-item {
+  width: 100%;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow:
+    0 14px 32px rgba(117, 76, 36, 0.12),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.95),
+    inset -2px -2px 4px rgba(117, 76, 36, 0.06);
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.journey-accordion-item:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 20px 40px rgba(117, 76, 36, 0.18),
+    inset 2px 2px 4px rgba(255, 255, 255, 1);
+}
+
+.journey-accordion-item.is-open {
+  box-shadow:
+    0 18px 38px rgba(117, 76, 36, 0.16),
+    0 0 20px rgba(138, 171, 206, 0.25),
+    inset 2.5px 2.5px 5px rgba(255, 255, 255, 1);
+}
+
+/* Tombol Header Accordion */
+.journey-accordion-header {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 22px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-align: left;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.accordion-num {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: #ebf3fb;
+  color: #8aabce;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(117, 76, 36, 0.08);
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.journey-accordion-item.is-open .accordion-num {
+  background: #8aabce;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Judul Accordion (Experiences, Education, Expertise) - Font nvv8uhi.css warna #8aabce */
+.accordion-heading {
+  font-size: clamp(20px, 2.3vw, 26px);
+  letter-spacing: 0.5px;
+  margin: 0;
+  transition: transform 0.3s ease;
+}
+
+.journey-accordion-item:hover .accordion-heading {
+  transform: translateX(4px);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.accordion-badge {
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(254, 223, 133, 0.45);
+  color: #754c24;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.accordion-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  box-shadow:
+    0 4px 10px rgba(117, 76, 36, 0.12),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8aabce;
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+}
+
+.chevron-svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Ketika Accordion Terbuka: Icon Chevron Berputar 180 Derajat */
+.journey-accordion-item.is-open .chevron-svg {
+  transform: rotate(180deg);
+}
+
+/* Body Accordion dengan Transisi Smooth Grid Rows (0fr ke 1fr) */
+.journey-accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s ease;
+}
+
+.journey-accordion-item.is-open .journey-accordion-body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.accordion-inner-content {
+  overflow: hidden;
+  padding: 0 26px;
+  transition: padding 0.35s ease;
+}
+
+.journey-accordion-item.is-open .accordion-inner-content {
+  padding: 4px 26px 26px;
+}
+
+/* Judul Role / Group (Font: tpw5sfc.css / daith-small) */
+.journey-role-title {
+  font-size: clamp(17px, 1.8vw, 21px);
+  color: #754c24;
+  margin: 0 0 12px;
+  line-height: 1.35;
+}
+
+/* Pembatas Divider Halus di Dalam Accordion */
+.accordion-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.accordion-divider .divider-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(254, 223, 133, 0.2), rgba(254, 223, 133, 0.8), rgba(254, 223, 133, 0.2));
+  border-radius: 2px;
+}
+
+.accordion-divider .divider-star {
+  color: #8aabce;
+  font-size: 13px;
+}
+
+/* List Item Experiences (Font: urca semibold #754c24) */
+.journey-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.journey-list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: rgba(254, 223, 133, 0.18);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.journey-list-item:hover {
+  transform: translateX(4px);
+  background: rgba(254, 223, 133, 0.4);
+}
+
+.item-bullet {
+  color: #8aabce;
+  font-size: 12px;
+}
+
+/* Grid Kartu Committee */
+.committee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.committee-card {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fbf8f0;
+  box-shadow:
+    0 4px 12px rgba(117, 76, 36, 0.06),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.committee-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 18px rgba(117, 76, 36, 0.12),
+    inset 1px 1px 2px rgba(255, 255, 255, 1);
+}
+
+.committee-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8aabce;
+  letter-spacing: 0.5px;
+}
+
+.committee-name {
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   2. DETAIL EDUCATION ACCORDION
+   ========================================================================== */
+.education-card-clay {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: #fbf8f0;
+  box-shadow:
+    0 6px 16px rgba(117, 76, 36, 0.08),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95);
+}
+
+.edu-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow:
+    0 6px 14px rgba(117, 76, 36, 0.1),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.95);
+  flex-shrink: 0;
+}
+
+.edu-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.education-degree {
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.edu-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #8aabce;
+  margin-top: 6px;
+}
+
+/* ==========================================================================
+   3. DETAIL EXPERTISE ACCORDION (6 SOFTWARE TOOLS & APPS)
+   ========================================================================== */
+.expertise-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.software-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: #fbf8f0;
+  box-shadow:
+    0 6px 16px rgba(117, 76, 36, 0.07),
+    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.tool-svg-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tool-svg-icon img,
+.tool-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+
+.tool-img-procreate img {
+  transform: scale(1.15);
+}
+
+.tool-img-canva img {
+  transform: scale(1.33);
+}
+
+.tool-img-capcut {
+  background: #ffffff;
+}
+
+.tool-img-capcut img {
+  object-fit: contain;
+  padding: 4px;
+}
+
+.tool-svg-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tool-name {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+/* Hover Efek Spesifik Tiap Software Brand */
+.software-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.software-card:hover .tool-svg-icon {
+  transform: scale(1.1) rotate(4deg);
+}
+
+.tool-indesign:hover {
+  box-shadow: 0 12px 24px rgba(255, 51, 102, 0.22), inset 1.5px 1.5px 3px rgba(255, 255, 255, 1);
+}
+
+.tool-illustrator:hover {
+  box-shadow: 0 12px 24px rgba(255, 154, 0, 0.25), inset 1.5px 1.5px 3px rgba(255, 255, 255, 1);
+}
+
+.tool-photoshop:hover {
+  box-shadow: 0 12px 24px rgba(49, 168, 255, 0.25), inset 1.5px 1.5px 3px rgba(255, 255, 255, 1);
+}
+
+.tool-procreate:hover {
+  box-shadow: 0 12px 24px rgba(255, 51, 102, 0.25), inset 1.5px 1.5px 3px rgba(255, 255, 255, 1);
+}
+
+.tool-canva:hover {
+  box-shadow: 0 12px 24px rgba(125, 42, 232, 0.25), inset 1.5px 1.5px 3px rgba(255, 255, 255, 1);
+}
+
+.tool-capcut:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18), inset 1.5px 1.5px 3px rgba(255, 255, 255, 1);
+}
+
+/* ==========================================================================
+   RESPONSIVE UNTUK #JOURNEY (TABLET & MOBILE)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .journey-container {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .journey-photo-column {
+    position: relative;
+    top: 0;
+  }
+
+  .journey-photo-card {
+    max-width: 380px;
+  }
+
+  .journey-frame-inner {
+    height: 420px;
+  }
+}
+
+@media (max-width: 600px) {
+  .journey-section {
+    padding-top: 100px;
+    padding-bottom: 70px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .journey-container {
+    gap: 32px;
+  }
+
+  .journey-photo-card {
+    max-width: 320px;
+    padding: 10px 10px 16px;
+    border-radius: 20px;
+  }
+
+  .journey-frame-inner {
+    height: 360px;
+    border-radius: 14px;
+  }
+
+  .cv-download-btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 12px 20px;
+    font-size: 14.5px;
+  }
+
+  .journey-main-title {
+    font-size: 2.2rem;
+  }
+
+  .journey-accordion-header {
+    padding: 16px 18px;
+  }
+
+  .accordion-num {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .accordion-heading {
+    font-size: 18px;
+  }
+
+  .accordion-inner-content {
+    padding: 0 18px;
+  }
+
+  .journey-accordion-item.is-open .accordion-inner-content {
+    padding: 4px 18px 20px;
+  }
+
+  .committee-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise-tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   BAGIAN KEEMPAT (#PROJECT SECTION)
+   - 5 Block Proyek Desain Interaktif
+   - Gradasi Langit Senja: Menyambung mulus dari #journey (#adcce9) menuju #wishlight (#1b2e46)
+   - Efek Klik: Menampilkan Modal Detail Proyek Menyeluruh
+   ========================================================================== */
+.project-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /* Transisi gradasi dari senja pastel Journey menuju birunya langit malam pekat */
+  background: linear-gradient(180deg, #adcce9 0%, #90b3d6 18%, #688fae 42%, #3c5d7c 70%, #1b2e46 100%);
+  padding: 130px 24px 110px;
+  overflow: hidden;
+  z-index: 6;
+}
+
+.project-ambient-light {
+  display: none;
+}
+
+/* Awan Dekorasi Sekeliling Project Section */
+.project-clouds-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.project-cloud {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 3;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.project-cloud img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 12px 24px rgba(27, 46, 70, 0.3));
+  opacity: 0.94;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.project-cloud:hover img,
+.project-cloud.active-touch img {
+  opacity: 1;
+  filter: drop-shadow(0 16px 32px rgba(27, 46, 70, 0.5)) drop-shadow(0 0 20px rgba(254, 223, 133, 0.3));
+}
+
+.project-cloud-1 {
+  top: 1.5%;
+  right: 4%;
+  width: 15%;
+  max-width: 170px;
+}
+
+.project-cloud-1 .cloud-bob-inner {
+  animation: cloudFloatTR 6.8s ease-in-out infinite;
+}
+
+.project-cloud-1 img {
+  transform: scaleX(-1) rotate(-14deg);
+}
+
+.project-cloud-2 {
+  top: 23%;
+  left: -3.5%;
+  width: 16%;
+  max-width: 190px;
+}
+
+.project-cloud-2 .cloud-bob-inner {
+  animation: cloudFloatTL 5.9s ease-in-out infinite 0.8s;
+}
+
+.project-cloud-2 img {
+  transform: rotate(12deg) scale(1.1);
+}
+
+.project-cloud-3 {
+  top: 49%;
+  right: -2.5%;
+  width: 14%;
+  max-width: 165px;
+}
+
+.project-cloud-3 .cloud-bob-inner {
+  animation: cloudFloatBR 7.4s ease-in-out infinite 1.4s;
+}
+
+.project-cloud-3 img {
+  transform: scaleY(-1) rotate(-16deg);
+}
+
+.project-cloud-4 {
+  top: 74%;
+  left: -2.5%;
+  width: 15%;
+  max-width: 175px;
+}
+
+.project-cloud-4 .cloud-bob-inner {
+  animation: cloudFloatBL 6.3s ease-in-out infinite 0.5s;
+}
+
+.project-cloud-4 img {
+  transform: scaleX(-1) rotate(8deg);
+}
+
+.project-cloud-5 {
+  bottom: 1.5%;
+  right: 7%;
+  width: 13%;
+  max-width: 150px;
+}
+
+.project-cloud-5 .cloud-bob-inner {
+  animation: cloudFloatTR 6.0s ease-in-out infinite 1.0s;
+}
+
+.project-cloud-5 img {
+  transform: rotate(15deg) scale(0.95);
+}
+
+.project-container {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Header Section Project */
+.project-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.project-subtag {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #fedf85;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.project-main-title {
+  font-size: clamp(2.5rem, 4.5vw, 3.6rem);
+  color: #ffffff;
+  line-height: 1.1;
+  text-shadow: 0 4px 14px rgba(27, 46, 70, 0.4);
+}
+
+.project-subtitle {
+  font-size: 15.5px;
+  color: #eaf1fa;
+  line-height: 1.6;
+  opacity: 0.95;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Memastikan teks subtitle project rapi tepat 2 baris di layar desktop */
+.project-subtitle-br {
+  display: inline;
+}
+
+@media (max-width: 860px) {
+  .project-subtitle-br {
+    display: none;
+  }
+}
+
+/* Grid 5 Balok Proyek: 2 Proyek Utama di Atas (6 col), 3 Proyek di Bawah (4 col) */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
+  width: 100%;
+}
+
+.project-block-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 16px 36px rgba(18, 32, 51, 0.22),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.95),
+    inset -2px -2px 4px rgba(117, 76, 36, 0.06);
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  outline: none;
+}
+
+/* 2 Balok Pertama: Span 6 (Ukuran Besar & Mewah) */
+.project-block-card[data-proj="1"],
+.project-block-card[data-proj="2"] {
+  grid-column: span 6;
+}
+
+/* 3 Balok Berikutnya: Span 4 (Seimbang & Elegan) */
+.project-block-card[data-proj="3"],
+.project-block-card[data-proj="4"],
+.project-block-card[data-proj="5"] {
+  grid-column: span 4;
+}
+
+.project-block-card:hover,
+.project-block-card:focus-visible {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow:
+    0 26px 54px rgba(18, 32, 51, 0.32),
+    0 0 24px rgba(254, 223, 133, 0.45),
+    inset 2px 2px 4px rgba(255, 255, 255, 1);
+}
+
+.project-card-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background-color: #f7e6b8;
+}
+
+.project-block-card[data-proj="1"] .project-card-image-wrap,
+.project-block-card[data-proj="2"] .project-card-image-wrap {
+  height: 280px;
+}
+
+.project-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.project-block-card:hover .project-card-img {
+  transform: scale(1.08);
+}
+
+.project-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(27, 46, 70, 0.6) 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.project-block-card:hover .project-card-overlay {
+  opacity: 1;
+}
+
+.project-view-badge {
+  background: rgba(255, 255, 255, 0.95);
+  color: #754c24;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  transform: translateY(6px);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.project-block-card:hover .project-view-badge {
+  transform: translateY(0);
+}
+
+.project-card-info {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  background: #ffffff;
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-tag {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #8aabce;
+  background: #ebf3fb;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.3px;
+}
+
+.project-card-title {
+  font-size: 18.33px;
+  font-size: calc(21px - 2pt);
+  color: #754c24;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.project-card-desc {
+  font-size: 14px;
+  color: #754c24;
+  opacity: 0.85;
+  margin: 0;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.project-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(117, 76, 36, 0.15);
+  font-size: 12.5px;
+  color: #a1703e;
+}
+
+.meta-year {
+  font-weight: 700;
+  color: #8aabce;
+}
+
+/* ==========================================================================
+   MODAL DETAIL PROYEK (MUNCUL SAAT BALOK DITEKAN)
+   ========================================================================== */
+.project-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 20, 32, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.project-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  max-height: 90vh;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.4),
+    inset 2.5px 2.5px 5px rgba(255, 255, 255, 1);
+  overflow-y: auto;
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.project-modal-backdrop.is-open .project-modal-container {
+  transform: scale(1) translateY(0);
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-pill);
+  background: #ffffff;
+  border: none;
+  font-size: 18px;
+  color: #754c24;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.project-modal-close:hover {
+  transform: rotate(90deg) scale(1.1);
+  background: #fde9a0;
+}
+
+.project-modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 32px;
+  padding: 32px;
+}
+
+.modal-image-col {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #f5f3ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+.modal-image-col.has-gallery {
+  height: clamp(380px, 46vh, 500px);
+  min-height: 350px;
+}
+
+.modal-hero-img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.32s ease, transform 0.35s ease;
+}
+
+.modal-image-col.has-gallery .modal-hero-img {
+  object-fit: contain;
+}
+
+.modal-hero-img.is-switching {
+  opacity: 0.2;
+  transform: scale(0.985);
+}
+
+.modal-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #754c24;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+  z-index: 4;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.modal-gallery-nav:hover {
+  background: #fde9a0;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.modal-gallery-prev {
+  left: 12px;
+}
+
+.modal-gallery-next {
+  right: 12px;
+}
+
+.modal-gallery-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(20, 26, 38, 0.42);
+  backdrop-filter: blur(6px);
+  z-index: 4;
+}
+
+.modal-gallery-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: width 0.25s ease, background-color 0.25s ease;
+}
+
+.modal-gallery-dot.is-active {
+  width: 22px;
+  background: #fedf85;
+}
+
+.modal-content-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal-tags {
+  display: none !important;
+}
+
+.modal-title,
+#modalProjectTitle {
+  font-size: clamp(18px, 1.8vw, 22px) !important;
+  color: #754c24;
+  margin: 0;
+  line-height: 1.35;
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  padding-right: 36px;
+}
+
+.modal-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #8aabce;
+  font-weight: 700;
+}
+
+.modal-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(117, 76, 36, 0.12);
+  margin: 6px 0;
+}
+
+.modal-desc {
+  font-size: 15.5px;
+  color: #754c24;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.modal-deliverables {
+  background: #fbf8f0;
+  padding: 16px 20px;
+  border-radius: 16px;
+  margin-top: 8px;
+}
+
+.deliverables-title {
+  font-size: 14.5px;
+  color: #8aabce;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.deliverables-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  color: #754c24;
+}
+
+/* ==========================================================================
+   COMPACT PROJECT CTA SECTION (Popup Modal)
+   Menghubungkan undangan kreatif dan tombol aksi langsung ke halaman Contact.
+   Desain pill rounded, claymorphism hangat, responsif, dan efek hover halus.
+   ========================================================================== */
+.modal-project-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(135deg, #fffcf5 0%, #fbf3e0 100%);
+  border: 1.5px solid rgba(254, 223, 133, 0.75);
+  border-radius: 20px;
+  padding: 12px 18px;
+  margin-top: 10px;
+  box-shadow:
+    0 6px 18px rgba(117, 76, 36, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.modal-cta-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.modal-cta-sparkle {
+  color: #e6aa28;
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.modal-cta-invite {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #754c24;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.modal-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: linear-gradient(135deg, #fedf85 0%, #f6cb60 100%);
+  color: #754c24;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow:
+    0 4px 14px rgba(230, 170, 40, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background 0.25s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.modal-cta-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 22px rgba(230, 170, 40, 0.45);
+  background: linear-gradient(135deg, #ffea9f 0%, #fedf85 100%);
+  color: #5c3814;
+}
+
+.modal-cta-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.modal-cta-btn-arrow {
+  font-size: 13px;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.modal-cta-btn:hover .modal-cta-btn-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 600px) {
+  .modal-project-cta {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .modal-cta-content {
+    justify-content: center;
+  }
+
+  .modal-cta-btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   BAGIAN KELIMA (#WISHLIGHT SECTION - CHINESE LANTERN NIGHT SKY)
+   - Langit Malam Interaktif Tradisi Lentera Tionghoa
+   - Lentera Melayang Naik Sekali & Menetap di Angkasa
+   - Menulis Harapan Anonim & Membaca Harapan Pengunjung Lain
+   - Musik Serenade Web Audio API, Intro Sinematik & Dashboard Admin Rahasia
+   ========================================================================== */
+#wishlight,
+.wishlight-section,
+.play-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /* Menyambung mulus dari ujung bawah #project (#1b2e46) menuju malam pekat kosmik */
+  background: linear-gradient(180deg, #1b2e46 0%, #122033 16%, #0c1626 38%, #070c18 68%, #040810 100%);
+  overflow: hidden;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Canvas Bintang Kelap-Kelip di Latar Langit */
+.night-sky-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Bulan Sabit Lembut di Pojok Atas Langit */
+.celestial-layer {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.celestial-moon {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.celestial-moon:hover {
+  transform: scale(1.15) rotate(-10deg);
+}
+
+.moon-crescent {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  box-shadow: -8px 8px 0 2px #fff3d1;
+  transform: rotate(35deg);
+}
+
+.moon-glow {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 243, 209, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Wadah Seluruh Lentera yang Melayang di Langit */
+.lantern-sky-area {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   LAYER BINTANG & AWAN DEKORATIF PLAY SECTION (SESUAI SECTION SEBELUMNYA)
+   - Bintang tanah liat (clay stars) kuning & biru interaktif
+   - Awan fluffy di keempat sudut langit malam dengan animasi mengapung & squish
+   -------------------------------------------------------------------------- */
+.play-stars-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.play-stars-layer .clay-star {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.play-stars-layer .star-yellow .star-icon {
+  filter: drop-shadow(0 0 14px rgba(254, 223, 133, 0.95)) drop-shadow(0 0 26px rgba(255, 212, 71, 0.65));
+}
+
+.play-stars-layer .star-blue .star-icon {
+  filter: drop-shadow(0 0 14px rgba(138, 171, 206, 0.95)) drop-shadow(0 0 26px rgba(100, 160, 230, 0.65));
+}
+
+.play-clouds-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.play-cloud {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 3;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.play-cloud img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 22px rgba(138, 171, 206, 0.25));
+  opacity: 0.92;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.play-cloud:hover img,
+.play-cloud.active-touch img {
+  opacity: 1;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 32px rgba(254, 223, 133, 0.5));
+}
+
+.play-cloud-tl {
+  top: 3%;
+  left: 2%;
+  width: 15%;
+  max-width: 170px;
+}
+
+.play-cloud-tl .cloud-bob-inner {
+  animation: cloudFloatTL 5.6s ease-in-out infinite;
+}
+
+.play-cloud-tr {
+  top: 4%;
+  right: 3%;
+  width: 14%;
+  max-width: 160px;
+}
+
+.play-cloud-tr .cloud-bob-inner {
+  animation: cloudFloatTR 6.4s ease-in-out infinite 0.5s;
+}
+
+.play-cloud-bl {
+  bottom: 6%;
+  left: 2%;
+  width: 16%;
+  max-width: 170px;
+}
+
+.play-cloud-bl .cloud-bob-inner {
+  animation: cloudFloatBL 6.0s ease-in-out infinite 1.1s;
+}
+
+.play-cloud-br {
+  bottom: 5%;
+  right: 2%;
+  width: 17%;
+  max-width: 180px;
+}
+
+.play-cloud-br .cloud-bob-inner {
+  animation: cloudFloatBR 6.8s ease-in-out infinite 0.3s;
+}
+
+@media (max-width: 768px) {
+  .journey-cloud-1 {
+    width: 25%;
+    max-width: 115px;
+    top: 1%;
+    left: 2%;
+  }
+
+  .journey-cloud-2 {
+    width: 26%;
+    max-width: 120px;
+    top: 30%;
+    right: -2%;
+  }
+
+  .journey-cloud-3 {
+    width: 25%;
+    max-width: 115px;
+    top: 62%;
+    left: -2%;
+  }
+
+  .journey-cloud-4 {
+    width: 26%;
+    max-width: 120px;
+    bottom: 1.5%;
+    right: 2%;
+  }
+
+  .project-cloud-1 {
+    width: 25%;
+    max-width: 115px;
+    top: 1%;
+    right: 1%;
+  }
+
+  .project-cloud-2 {
+    width: 26%;
+    max-width: 120px;
+    top: 22%;
+    left: -2%;
+  }
+
+  .project-cloud-3 {
+    width: 24%;
+    max-width: 110px;
+    top: 48%;
+    right: -2%;
+  }
+
+  .project-cloud-4 {
+    width: 25%;
+    max-width: 115px;
+    top: 72%;
+    left: -2%;
+  }
+
+  .project-cloud-5 {
+    width: 24%;
+    max-width: 110px;
+    bottom: 1%;
+    right: 2%;
+  }
+
+  .play-cloud-tl {
+    width: 28%;
+    max-width: 110px;
+    top: 2%;
+    left: 1%;
+  }
+
+  .play-cloud-tr {
+    width: 26%;
+    max-width: 100px;
+    top: 2%;
+    right: 1%;
+  }
+
+  .play-cloud-bl {
+    width: 28%;
+    max-width: 110px;
+    bottom: 8%;
+    left: 1%;
+  }
+
+  .play-cloud-br {
+    width: 30%;
+    max-width: 120px;
+    bottom: 7%;
+    right: 1%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ELEMEN LENTERA TIONGHOA (CHINESE LANTERN)
+   - Terapung lembut di angkasa
+   - Memiliki bentuk silinder lentera kertas tradisional bercahaya amber
+   - Terbuka saat diklik untuk membaca harapan anonim
+   -------------------------------------------------------------------------- */
+.floating-lantern {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  will-change: transform, opacity;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   LENTERA TERBANG LANGSUNG DARI TOMBOL KE LANGIT (ACTIVE FLYING LANTERN)
+   - Muncul di dalam container langit (#lanternSkyArea) agar tidak keluar halaman / navbar
+   - Meluncur naik dengan elegan dan mendarat presisi di titik koordinat yang fix
+   -------------------------------------------------------------------------- */
+.active-flying-lantern {
+  position: absolute;
+  z-index: 45;
+  pointer-events: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: center center;
+  will-change: transform, opacity, filter;
+  filter: drop-shadow(0 0 34px var(--l-glow-1, #fedf85)) brightness(1.35);
+}
+
+.active-flying-lantern .lantern-body {
+  width: 36px;
+  height: 48px;
+  border-radius: 8px 8px 12px 12px;
+  background: var(--l-bg, linear-gradient(180deg, #fff3cb 0%, #fedf85 40%, #f7b731 85%, #b86205 100%));
+  box-shadow:
+    0 0 45px var(--l-glow-1, rgba(254, 223, 133, 1)),
+    0 0 75px var(--l-glow-2, rgba(247, 183, 49, 0.7)),
+    inset 0 0 14px rgba(255, 255, 240, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.active-flying-lantern .lantern-flame-core {
+  width: 38%;
+  height: 44%;
+  border-radius: 50% 50% 40% 40%;
+  background: #ffffff;
+  box-shadow: 0 0 18px var(--l-flame-1, #fff9d6), 0 0 36px var(--l-flame-2, #fedf85);
+  animation: flameFlickerRise 0.45s ease-in-out infinite alternate !important;
+}
+
+.active-flying-lantern .lantern-cap-top {
+  position: absolute;
+  top: -3px;
+  width: 60%;
+  height: 4px;
+  background: #5d1600;
+  border-radius: 2px;
+}
+
+.active-flying-lantern .lantern-cap-bottom {
+  position: absolute;
+  bottom: -3px;
+  width: 70%;
+  height: 4px;
+  background: #5d1600;
+  border-radius: 2px;
+}
+
+.active-flying-lantern .lantern-tassel {
+  width: 2.8px;
+  height: 16px;
+  background: var(--l-tassel-color, #8c5c24);
+  margin-top: 3px;
+  transform-origin: top center;
+  animation: tasselRiseFlutter 0.32s ease-in-out infinite alternate !important;
+}
+
+@keyframes flameFlickerRise {
+  0% {
+    transform: scale(1.1) translateY(1px);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(1.4) translateY(-2px);
+    opacity: 1;
+  }
+}
+
+@keyframes tasselRiseFlutter {
+  0% {
+    transform: scaleY(1.2) rotate(-4deg);
+  }
+
+  100% {
+    transform: scaleY(1.4) rotate(4deg);
+  }
+}
+
+/* Riak Gelombang Cahaya Emas / Biru Saat Lentera Menetap di Angkasa */
+.lantern-arrival-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  margin-top: -22px;
+  margin-left: -22px;
+  border-radius: 50%;
+  border: 2px solid var(--l-glow-1, #fedf85);
+  background: radial-gradient(circle, var(--l-glow-1, rgba(254, 223, 133, 0.45)) 0%, transparent 72%);
+  box-shadow: 0 0 25px var(--l-glow-1, #fedf85);
+  pointer-events: none;
+  z-index: 45;
+  animation: arrivalHaloPulse 1.4s cubic-bezier(0.12, 0.8, 0.28, 1) forwards;
+}
+
+@keyframes arrivalHaloPulse {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: scale(3.8);
+    opacity: 0;
+  }
+}
+
+/* Partikel Jejak Terbang Lentera (Flight Embers Trail) */
+.flight-sparkle-dot {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   PERGERAKAN LENTERA DI LANGIT (STABIL & TETAP DI POSISI FIX)
+   - Lentera berhenti di titik koordinat yang tepat tanpa berpindah posisi
+   -------------------------------------------------------------------------- */
+.lantern-drift-1,
+.lantern-drift-2,
+.lantern-drift-3,
+.lantern-drift-4 {
+  animation: none !important;
+}
+
+@keyframes lanternGentleFloat1 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-1.5deg);
+  }
+
+  50% {
+    transform: translate3d(8px, -6px, 0) rotate(1.2deg);
+  }
+
+  100% {
+    transform: translate3d(-6px, -10px, 0) rotate(-1deg);
+  }
+}
+
+@keyframes lanternGentleFloat2 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(1.5deg);
+  }
+
+  50% {
+    transform: translate3d(-8px, -7px, 0) rotate(-1.2deg);
+  }
+
+  100% {
+    transform: translate3d(6px, -11px, 0) rotate(1deg);
+  }
+}
+
+@keyframes lanternGentleFloat3 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-1.2deg);
+  }
+
+  50% {
+    transform: translate3d(9px, -5px, 0) rotate(1.4deg);
+  }
+
+  100% {
+    transform: translate3d(-7px, -9px, 0) rotate(-0.8deg);
+  }
+}
+
+@keyframes lanternGentleFloat4 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(1.2deg);
+  }
+
+  50% {
+    transform: translate3d(-7px, -8px, 0) rotate(-1.5deg);
+  }
+
+  100% {
+    transform: translate3d(7px, -6px, 0) rotate(0.8deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   WARNA LENTERA TIONGHOA: KUNING (#fedf85) & BIRU (#8aabce)
+   Sesuai warna signature navigasi, bintang, & bagian atas website.
+   -------------------------------------------------------------------------- */
+
+/* 1. Palet Kuning (#fedf85 & #fde9a0) */
+.lantern-color-yellow,
+.lantern-color-amber,
+.lantern-color-gold {
+  --l-bg: linear-gradient(180deg, #fff3cb 0%, #fedf85 40%, #f7b731 85%, #b86205 100%);
+  --l-glow-1: rgba(254, 223, 133, 0.95);
+  --l-glow-2: rgba(247, 183, 49, 0.45);
+  --l-flame-1: #fff9d6;
+  --l-flame-2: #fedf85;
+  --l-tassel-color: #8c5c24;
+}
+
+/* 2. Palet Biru (#8aabce & #a6c5e2) */
+.lantern-color-blue,
+.lantern-color-azure,
+.lantern-color-rose,
+.lantern-color-emerald,
+.lantern-color-violet,
+.lantern-color-coral {
+  --l-bg: linear-gradient(180deg, #e4f0fa 0%, #a6c5e2 40%, #8aabce 85%, #466e95 100%);
+  --l-glow-1: rgba(138, 171, 206, 0.95);
+  --l-glow-2: rgba(95, 131, 166, 0.5);
+  --l-flame-1: #f0f7ff;
+  --l-flame-2: #8aabce;
+  --l-tassel-color: #5f83a6;
+}
+
+/* Bentuk Silinder Lentera Kertas Tradisional */
+.lantern-body {
+  position: relative;
+  width: var(--l-width, 34px);
+  height: var(--l-height, 46px);
+  border-radius: 8px 8px 12px 12px;
+  background: var(--l-bg, linear-gradient(180deg, #ffe5a3 0%, #ff9838 45%, #e64a19 90%, #8d1d00 100%));
+  box-shadow:
+    0 0 var(--l-glow, 22px) var(--l-glow-1, rgba(255, 160, 50, 0.85)),
+    0 0 calc(var(--l-glow, 22px) * 1.8) var(--l-glow-2, rgba(255, 90, 20, 0.4)),
+    inset 0 0 8px rgba(255, 255, 220, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.35s ease;
+}
+
+/* Bingkai Kayu Atas & Bawah Lentera */
+.lantern-cap-top {
+  position: absolute;
+  top: -3px;
+  width: 60%;
+  height: 4px;
+  background: #5d1600;
+  border-radius: 2px;
+}
+
+.lantern-cap-bottom {
+  position: absolute;
+  bottom: -3px;
+  width: 70%;
+  height: 4px;
+  background: #5d1600;
+  border-radius: 2px;
+}
+
+/* Inti Api Lentera Berkelip */
+.lantern-flame-core {
+  width: 36%;
+  height: 42%;
+  border-radius: 50% 50% 40% 40%;
+  background: #ffffff;
+  box-shadow: 0 0 10px var(--l-flame-1, #fff7c2), 0 0 20px var(--l-flame-2, #ffbb33);
+  animation: flameFlicker 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes flameFlicker {
+  0% {
+    transform: scale(0.9) translateY(1px);
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: scale(1.1) translateY(-1px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.95) translateY(0);
+    opacity: 0.9;
+  }
+}
+
+/* Rumbai Tradisional di Bawah Lentera (Mengikuti Warna Lentera) */
+.lantern-tassel {
+  width: 2.5px;
+  height: 13px;
+  background: var(--l-tassel-color, #d32f2f);
+  margin-top: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transform-origin: top center;
+  animation: tasselSway 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes tasselSway {
+  0% {
+    transform: rotate(-6deg);
+  }
+
+  100% {
+    transform: rotate(6deg);
+  }
+}
+
+/* Efek Hover Kursor pada Lentera: Membesar & Terang */
+.floating-lantern:hover {
+  transform: translate(-50%, -50%) scale(1.35) !important;
+  z-index: 25 !important;
+  filter: brightness(1.25);
+}
+
+.floating-lantern:hover .lantern-body {
+  box-shadow:
+    0 0 38px var(--l-glow-1, rgba(255, 190, 80, 1)),
+    0 0 65px var(--l-glow-2, rgba(255, 120, 40, 0.7)),
+    inset 0 0 12px rgba(255, 255, 255, 1);
+}
+
+/* Kategori Umur Lentera (Lantern Age): Lentera Baru vs Lentera Lama */
+.lantern-fresh {
+  --l-width: 44px;
+  --l-height: 58px;
+  --l-glow: 32px;
+}
+
+.lantern-mid {
+  --l-width: 34px;
+  --l-height: 46px;
+  --l-glow: 22px;
+  opacity: 0.92;
+}
+
+.lantern-distant {
+  --l-width: 22px;
+  --l-height: 30px;
+  --l-glow: 14px;
+  opacity: 0.78;
+}
+
+/* --------------------------------------------------------------------------
+   BILAH KONTROL ATAS (#wishlight)
+   -------------------------------------------------------------------------- */
+.play-header-controls {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 30px 36px 0;
+}
+
+.sky-control-btn {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  color: #f7e6b8;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.sky-control-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(254, 223, 133, 0.6);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(254, 223, 133, 0.25);
+}
+
+.btn-admin {
+  background: rgba(255, 152, 0, 0.12);
+  border-color: rgba(255, 152, 0, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   BILAH AKSI BAWAH (#wishlight)
+   -------------------------------------------------------------------------- */
+.play-bottom-dock {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 0 24px 45px;
+  text-align: center;
+}
+
+.lantern-sky-count-pill {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill);
+  padding: 6px 18px;
+  font-size: 12.5px;
+  color: #fedf85;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.count-sparkle {
+  color: #ffb74d;
+}
+
+/* Tombol CTA Menerbangkan Lentera */
+.release-lantern-cta {
+  background: linear-gradient(135deg, #ff9800 0%, #e65100 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-pill);
+  padding: 16px 36px;
+  color: #ffffff;
+  font-size: 16.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow:
+    0 12px 30px rgba(230, 81, 0, 0.45),
+    0 0 25px rgba(255, 152, 0, 0.4),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  user-select: none;
+}
+
+.release-lantern-cta:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow:
+    0 18px 42px rgba(230, 81, 0, 0.6),
+    0 0 35px rgba(255, 152, 0, 0.65),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.release-lantern-cta:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.cta-lantern-icon {
+  font-size: 20px;
+}
+
+.sky-whisper-hint {
+  font-size: 13px;
+  color: rgba(234, 241, 250, 0.7);
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+/* --------------------------------------------------------------------------
+   MODAL RILIS LENTERA & MEMBACA HARAPAN (GLASSMORPHISM)
+   -------------------------------------------------------------------------- */
+.lantern-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 8, 16, 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.lantern-modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lantern-glass-modal,
+.lantern-wish-card-modal,
+.admin-dashboard-modal {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: rgba(18, 28, 45, 0.92);
+  border: 1px solid rgba(255, 200, 100, 0.3);
+  border-radius: 28px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(255, 152, 0, 0.2),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.2);
+  padding: 36px 32px;
+  color: #ffffff;
+  transform: scale(0.92) translateY(18px);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lantern-modal-backdrop.is-open .lantern-glass-modal,
+.lantern-modal-backdrop.is-open .lantern-wish-card-modal,
+.lantern-modal-backdrop.is-open .admin-dashboard-modal {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fedf85;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.modal-lantern-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.mini-lantern-glow {
+  font-size: 38px;
+  filter: drop-shadow(0 0 16px #ff9800);
+  animation: flameFlicker 2s ease-in-out infinite;
+}
+
+.release-modal-title {
+  font-size: 24px;
+  color: #fedf85;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.release-modal-subtitle {
+  font-size: 13.5px;
+  color: #d1deef;
+  line-height: 1.55;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.wish-textarea {
+  width: 100%;
+  background: rgba(7, 12, 22, 0.7);
+  border: 1px solid rgba(254, 223, 133, 0.25);
+  border-radius: 16px;
+  padding: 16px 16px 32px;
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.55;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wish-textarea:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 16px rgba(255, 152, 0, 0.3);
+}
+
+.char-count {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Pemilih Warna Lentera Tradisional di Modal Rilis */
+.lantern-color-picker-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+  text-align: center;
+}
+
+.color-picker-label {
+  font-size: 12.5px;
+  color: #fedf85;
+  letter-spacing: 0.5px;
+}
+
+.color-palette-options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.color-choice-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: none;
+}
+
+.color-choice-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+.color-choice-btn.is-selected {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.35);
+  transform: scale(1.05);
+}
+
+.color-preview-chip {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.color-btn-text {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+}
+
+.release-privacy-note {
+  font-size: 12px;
+  color: #8aabce;
+  margin: 12px 0 18px;
+  text-align: center;
+}
+
+.submit-wish-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #ff9800 0%, #e65100 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-pill);
+  padding: 14px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(230, 81, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.submit-wish-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(230, 81, 0, 0.6);
+}
+
+/* Modal Membaca Harapan Anonim */
+.lantern-wish-card-modal {
+  text-align: center;
+  max-width: 490px;
+  padding: 38px 32px 34px;
+  transition: all 0.35s ease;
+}
+
+.lantern-wish-card-modal {
+  text-align: center;
+}
+
+.view-modal-subtag {
+  font-size: 13px;
+  font-weight: 700;
+  color: #8aabce;
+  letter-spacing: 2px;
+  display: block;
+  margin-top: 4px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  transition: color 0.35s ease;
+}
+
+.view-wish-content {
+  font-size: clamp(18px, 2.1vw, 23px);
+  color: #fedf85;
+  line-height: 1.6;
+  margin: 0 0 22px;
+  padding: 22px 24px;
+  border-radius: 20px;
+  font-style: italic;
+  text-align: center;
+  transition: all 0.35s ease;
+}
+
+.view-wish-meta {
+  font-size: 13px;
+  color: #a4b8d1;
+  text-align: center;
+  transition: color 0.35s ease;
+}
+
+/* --- TEMA KUNING (Yellow Lantern) --- */
+.lantern-wish-card-modal.theme-yellow {
+  background: linear-gradient(150deg, rgba(30, 26, 18, 0.96) 0%, rgba(16, 20, 32, 0.96) 100%);
+  border: 1px solid rgba(254, 223, 133, 0.45);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.65),
+    0 0 45px rgba(254, 223, 133, 0.25),
+    inset 1px 1px 2px rgba(254, 223, 133, 0.3);
+}
+
+.lantern-wish-card-modal.theme-yellow .view-modal-subtag {
+  color: #fedf85;
+  text-shadow: 0 0 10px rgba(254, 223, 133, 0.4);
+}
+
+.lantern-wish-card-modal.theme-yellow .view-wish-content {
+  color: #fff6d6;
+  background: linear-gradient(145deg, rgba(254, 223, 133, 0.12) 0%, rgba(26, 22, 16, 0.7) 100%);
+  border: 1.5px solid rgba(254, 223, 133, 0.45);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(254, 223, 133, 0.2),
+    inset 0 1px 2px rgba(254, 223, 133, 0.25);
+  text-shadow: 0 0 14px rgba(254, 223, 133, 0.28);
+}
+
+.lantern-wish-card-modal.theme-yellow .view-wish-meta {
+  color: #fde9a0;
+}
+
+.lantern-wish-card-modal.theme-yellow .modal-close-btn {
+  color: #fedf85;
+  border-color: rgba(254, 223, 133, 0.35);
+}
+
+/* --- TEMA BIRU (Blue Lantern) --- */
+.lantern-wish-card-modal.theme-blue {
+  background: linear-gradient(150deg, rgba(16, 26, 44, 0.96) 0%, rgba(10, 16, 28, 0.96) 100%);
+  border: 1px solid rgba(138, 171, 206, 0.5);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.65),
+    0 0 45px rgba(138, 171, 206, 0.3),
+    inset 1px 1px 2px rgba(138, 171, 206, 0.35);
+}
+
+.lantern-wish-card-modal.theme-blue .view-modal-subtag {
+  color: #a4c4e8;
+  text-shadow: 0 0 10px rgba(138, 171, 206, 0.5);
+}
+
+.lantern-wish-card-modal.theme-blue .view-wish-content {
+  color: #e4f1fc;
+  background: linear-gradient(145deg, rgba(138, 171, 206, 0.14) 0%, rgba(12, 20, 34, 0.7) 100%);
+  border: 1.5px solid rgba(138, 171, 206, 0.45);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(138, 171, 206, 0.25),
+    inset 0 1px 2px rgba(138, 171, 206, 0.3);
+  text-shadow: 0 0 14px rgba(138, 171, 206, 0.32);
+}
+
+.lantern-wish-card-modal.theme-blue .view-wish-meta {
+  color: #8aabce;
+}
+
+.lantern-wish-card-modal.theme-blue .modal-close-btn {
+  color: #8aabce;
+  border-color: rgba(138, 171, 206, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   DASHBOARD ADMIN RAHASIA (Private Sky Archive)
+   -------------------------------------------------------------------------- */
+.admin-dashboard-modal {
+  max-width: 680px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.admin-badge-icon {
+  font-size: 36px;
+  display: block;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.admin-title {
+  font-size: 22px;
+  color: #fedf85;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.admin-desc {
+  font-size: 13.5px;
+  color: #c9d8ea;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.admin-pass-input {
+  background: rgba(6, 11, 20, 0.8);
+  border: 1px solid rgba(254, 223, 133, 0.3);
+  border-radius: var(--radius-pill);
+  padding: 12px 18px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  text-align: center;
+}
+
+.admin-login-btn {
+  background: #ff9800;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 12px;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.admin-login-btn:hover {
+  background: #f57c00;
+}
+
+.admin-err-msg {
+  color: #ff5252;
+  font-size: 12px;
+  text-align: center;
+  margin: 4px 0 0;
+}
+
+.data-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-action-btn {
+  background: rgba(254, 223, 133, 0.12);
+  border: 1px solid rgba(254, 223, 133, 0.35);
+  color: #fedf85;
+  font-size: 11.5px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-action-btn:hover {
+  background: rgba(254, 223, 133, 0.28);
+  border-color: #fedf85;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.admin-action-btn:active {
+  transform: translateY(0);
+}
+
+.admin-clear-all-btn {
+  background: rgba(255, 82, 82, 0.2);
+  border: 1px solid rgba(255, 82, 82, 0.4);
+  color: #ff8a80;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-clear-all-btn:hover {
+  background: rgba(255, 82, 82, 0.4);
+}
+
+.admin-info-note {
+  font-size: 12.5px;
+  color: #8aabce;
+  margin: 0 0 16px;
+  line-height: 1.45;
+}
+
+.admin-wishes-table-wrap {
+  max-height: 340px;
+  overflow-y: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-wishes-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.admin-wishes-table th {
+  background: rgba(6, 11, 20, 0.9);
+  color: #fedf85;
+  padding: 12px 14px;
+  position: sticky;
+  top: 0;
+}
+
+.admin-wishes-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #eaf1fa;
+}
+
+.admin-delete-btn {
+  background: rgba(255, 82, 82, 0.2);
+  border: 1px solid rgba(255, 82, 82, 0.4);
+  color: #ff8a80;
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 11.5px;
+  transition: background-color 0.2s ease;
+}
+
+.admin-delete-btn:hover {
+  background: rgba(255, 82, 82, 0.5);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   RESPONSIVE UNTUK #PROJECT & #PLAY (MOBILE & TABLET)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .project-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .project-block-card[data-proj="1"],
+  .project-block-card[data-proj="2"],
+  .project-block-card[data-proj="3"],
+  .project-block-card[data-proj="4"],
+  .project-block-card[data-proj="5"] {
+    grid-column: span 6;
+  }
+
+  .project-modal-container {
+    max-height: 88vh;
+    border-radius: 24px;
+    width: 94%;
+    margin: 0 auto;
+  }
+
+  .project-modal-body {
+    grid-template-columns: 1fr;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 24px 20px;
+    gap: 20px;
+  }
+
+  .modal-image-col {
+    min-height: 240px;
+    height: clamp(240px, 35vh, 320px);
+  }
+
+  .modal-image-col.has-gallery {
+    height: clamp(280px, 38vh, 360px);
+    min-height: 250px;
+  }
+
+  .play-header-controls {
+    padding: 20px 20px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-section {
+    padding-top: 95px;
+    padding-bottom: 70px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-block-card[data-proj="1"],
+  .project-block-card[data-proj="2"],
+  .project-block-card[data-proj="3"],
+  .project-block-card[data-proj="4"],
+  .project-block-card[data-proj="5"] {
+    grid-column: span 1;
+  }
+
+  .project-card-image-wrap {
+    height: 200px;
+  }
+
+  .project-modal-container {
+    padding: 0;
+    border-radius: 20px;
+    max-height: 92vh;
+    width: 96%;
+    margin: 0 auto;
+  }
+
+  .project-modal-body {
+    padding: 16px 14px;
+    gap: 16px;
+    max-height: 92vh;
+  }
+
+  .project-modal-close {
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+
+  .modal-image-col.has-gallery {
+    height: clamp(220px, 30vh, 260px);
+    min-height: 200px;
+    border-radius: 14px;
+  }
+
+  .modal-title,
+  #modalProjectTitle {
+    font-size: 17px !important;
+    line-height: 1.35;
+    white-space: normal !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    padding-right: 28px;
+  }
+
+  .modal-desc {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .modal-deliverables {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .deliverables-list {
+    font-size: 13px;
+    gap: 4px;
+    padding-left: 16px;
+  }
+
+  .play-header-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 15px 10px 0;
+  }
+
+  .sky-control-btn {
+    padding: 6px 12px;
+    font-size: 11.5px;
+  }
+
+  .release-lantern-cta {
+    padding: 14px 26px;
+    font-size: 15px;
+  }
+
+  .lantern-glass-modal,
+  .lantern-wish-card-modal,
+  .admin-dashboard-modal {
+    padding: 26px 20px;
+    border-radius: 22px;
+  }
+}
+
+/* ==========================================================================
+   BAGIAN KEENAM: SECTION #CONTACT & FOOTER
+   - Transisi latar mulus dari langit malam kosmik (#040810) menuju kehangatan senja malam
+   - Dua kolom interaktif: Info kontak langsung & Form pesan claymorphic
+   - Tombol copy email dengan animasi sukses, status ketersediaan live pulse, dan avatar interaktif
+   - Footer penutup portofolio dengan navigasi cepat & tombol Back to Top
+   ========================================================================== */
+.contact-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /* Menyambung mulus dari ujung bawah #wishlight (#040810) */
+  background: linear-gradient(180deg, #040810 0%, #070e18 15%, #0d1827 38%, #152438 72%, #1b2f48 100%);
+  overflow: hidden;
+  z-index: 8;
+  padding: 120px 24px 0;
+}
+
+/* Layer Bintang Clay Dekoratif Contact */
+.contact-stars-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.contact-stars-layer .clay-star {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Layer Awan Fluffy Sudut */
+.contact-clouds-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.contact-cloud {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 2;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.contact-cloud img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 20px rgba(138, 171, 206, 0.2));
+  opacity: 0.9;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.contact-cloud:hover img,
+.contact-cloud.active-touch img {
+  opacity: 1;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 28px rgba(254, 223, 133, 0.45));
+}
+
+.contact-cloud-tl {
+  top: 4%;
+  left: 2%;
+  width: 14%;
+  max-width: 160px;
+}
+
+.contact-cloud-tl .cloud-bob-inner {
+  animation: cloudFloatTL 5.8s ease-in-out infinite;
+}
+
+.contact-cloud-tr {
+  top: 5%;
+  right: 2%;
+  width: 13%;
+  max-width: 150px;
+}
+
+.contact-cloud-tr .cloud-bob-inner {
+  animation: cloudFloatTR 6.6s ease-in-out infinite 0.7s;
+}
+
+/* Container Utama Contact */
+.contact-container {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  z-index: 5;
+}
+
+/* Header Contact */
+.contact-header {
+  text-align: center;
+  margin-bottom: 54px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-subtag {
+  font-size: 13px;
+  font-weight: 700;
+  color: #8aabce;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.contact-main-title {
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+  font-weight: 700;
+  color: #fedf85;
+  margin: 0 0 16px;
+  text-shadow: 0 0 25px rgba(254, 223, 133, 0.45);
+}
+
+.contact-subtitle {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #d0deee;
+  margin: 0;
+}
+
+/* Grid 2 Kolom Contact: Kiri Info, Kanan Form */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   KOLOM KIRI: INFO KONTAK LANGSUNG
+   -------------------------------------------------------------------------- */
+.contact-info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Status Ketersediaan Proyek */
+.contact-status-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.status-indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 14px #4ade80;
+  animation: statusPulse 2s infinite alternate;
+  flex-shrink: 0;
+}
+
+@keyframes statusPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+    box-shadow: 0 0 8px #4ade80;
+  }
+
+  100% {
+    transform: scale(1.15);
+    opacity: 1;
+    box-shadow: 0 0 18px #4ade80;
+  }
+}
+
+.status-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #a4b8d1;
+  display: block;
+}
+
+.status-desc {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Kartu Saluran Komunikasi (Email & Lokasi) */
+.contact-channel-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-channel-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(138, 171, 206, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35), 0 0 20px rgba(138, 171, 206, 0.2);
+}
+
+.card-icon-bubble {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(138, 171, 206, 0.15);
+  border: 1px solid rgba(138, 171, 206, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fedf85;
+  flex-shrink: 0;
+}
+
+.contact-svg-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.card-body-text {
+  flex: 1;
+}
+
+.card-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a4b8d1;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.card-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  word-break: break-all;
+  transition: color 0.2s ease;
+}
+
+.card-value:hover {
+  color: #fedf85;
+}
+
+/* Tombol Copy Email */
+.copy-email-btn {
+  background: rgba(254, 223, 133, 0.15);
+  border: 1px solid rgba(254, 223, 133, 0.35);
+  border-radius: 12px;
+  padding: 7px 14px;
+  color: #fedf85;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.copy-email-btn:hover {
+  background: #fedf85;
+  color: #754c24;
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(254, 223, 133, 0.5);
+}
+
+.copy-icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* Grup Sosial Media */
+.contact-socials-group {
+  margin: 10px 0 24px;
+}
+
+.socials-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #a4b8d1;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.social-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.social-pill-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-pill);
+  padding: 9px 18px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.social-pill-btn:hover {
+  background: #8aabce;
+  color: #08111d;
+  border-color: #8aabce;
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 18px rgba(138, 171, 206, 0.35);
+}
+
+.social-svg-icon {
+  width: 17px;
+  height: 17px;
+}
+
+/* Avatar Interaktif Mini dengan Speech Bubble Ramah */
+.contact-avatar-badge {
+  background: linear-gradient(135deg, rgba(138, 171, 206, 0.15) 0%, rgba(254, 223, 133, 0.1) 100%);
+  border: 1.5px solid rgba(254, 223, 133, 0.3);
+  border-radius: 22px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-avatar-badge:hover {
+  transform: scale(1.03) rotate(-1deg);
+  border-color: #fedf85;
+  box-shadow: 0 14px 30px rgba(254, 223, 133, 0.25);
+}
+
+.contact-avatar-bubble {
+  background: #ffffff;
+  color: #754c24;
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  flex: 1;
+}
+
+.contact-avatar-bubble span {
+  display: block;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.contact-avatar-bubble::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 8px solid #ffffff;
+}
+
+.contact-avatar-img-wrap {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.contact-branding-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
+}
+
+/* --------------------------------------------------------------------------
+   KOLOM KANAN: FORM PESAN INTERAKTIF (CLAYMORPHISM)
+   -------------------------------------------------------------------------- */
+.contact-form-card {
+  background: rgba(18, 32, 51, 0.7);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1.5px solid rgba(254, 223, 133, 0.25);
+  border-radius: 28px;
+  padding: 38px 40px;
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.45),
+    inset 0 0 20px rgba(255, 255, 255, 0.04);
+}
+
+.form-tag {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #8aabce;
+  letter-spacing: 1.8px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fedf85;
+  margin: 0 0 24px;
+}
+
+/* Pemilih Topik Kolaborasi */
+.form-topic-selection {
+  margin-bottom: 20px;
+}
+
+.form-field-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #d0deee;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.topic-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topic-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-pill);
+  padding: 7px 15px;
+  color: #d0deee;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.topic-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.topic-pill.is-active {
+  background: #fedf85;
+  color: #754c24;
+  border-color: #fedf85;
+  box-shadow: 0 0 14px rgba(254, 223, 133, 0.45);
+  font-weight: 700;
+}
+
+.form-inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.contact-text-input,
+.contact-textarea {
+  width: 100%;
+  background: rgba(8, 17, 29, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-size: 14.5px;
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.contact-text-input:focus,
+.contact-textarea:focus {
+  border-color: #8aabce;
+  box-shadow: 0 0 18px rgba(138, 171, 206, 0.4);
+}
+
+.contact-text-input::placeholder,
+.contact-textarea::placeholder {
+  color: rgba(208, 222, 238, 0.45);
+}
+
+/* Tombol Submit Form Contact */
+.contact-submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #fedf85 0%, #e6aa28 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  padding: 15px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #754c24;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  box-shadow: 0 10px 24px rgba(230, 170, 40, 0.35);
+}
+
+.contact-submit-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 32px rgba(254, 223, 133, 0.5);
+}
+
+.contact-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.contact-submit-btn .btn-icon {
+  font-size: 16px;
+  color: #754c24;
+}
+
+/* Pesan Notifikasi Sukses */
+.contact-form-notice {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(74, 222, 128, 0.15);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  color: #86efac;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: noticeFadeIn 0.35s ease;
+}
+
+.contact-form-notice a {
+  color: #fedf85;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.contact-form-notice a:hover {
+  color: #ffffff;
+}
+
+@keyframes noticeFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER PENUTUP PORTOFOLIO
+   -------------------------------------------------------------------------- */
+.portfolio-footer {
+  margin-top: 100px;
+  padding: 45px 0 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-bottom: 28px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand-logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fedf85;
+  text-decoration: none;
+  text-shadow: 0 0 18px rgba(254, 223, 133, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.footer-brand-logo:hover {
+  transform: scale(1.04);
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: #a4b8d1;
+  margin: 4px 0 0;
+}
+
+.footer-center {
+  display: flex;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: #d0deee;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: #fedf85;
+}
+
+/* Tombol Back to Top */
+.back-to-top-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-pill);
+  padding: 10px 22px;
+  color: #fedf85;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.back-to-top-btn:hover {
+  background: #fedf85;
+  color: #754c24;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(254, 223, 133, 0.4);
+}
+
+.arrow-up {
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.footer-bottom-bar {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  color: rgba(208, 222, 238, 0.65);
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-bottom-bar p {
+  margin: 0;
+}
+
+/* Responsive Media Queries Contact */
+@media (max-width: 860px) {
+  .contact-section {
+    padding-top: 90px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .form-inputs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-card {
+    padding: 26px 20px;
+    border-radius: 22px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-left {
+    align-items: center;
+  }
+
+  .footer-center {
+    justify-content: center;
+  }
+
+  .footer-nav {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .contact-cloud-tl {
+    width: 26%;
+    max-width: 110px;
+  }
+
+  .contact-cloud-tr {
+    width: 24%;
+    max-width: 100px;
+  }
+}

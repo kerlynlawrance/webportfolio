@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kerlyn Lawrance | Portfolio</title>
+
+  <!-- ==============================================
+       ADOBE FONTS (TYPEKIT)
+       1. Monotalic: Khusus nama brand "Kerlyn Lawrance"
+       2. Urca Semi Bold: Khusus teks menu navigasi
+       3. Daith Small & Daith Text Italic: Khusus teks hero "A little About What I Create"
+       ============================================== -->
+  <link rel="stylesheet" href="https://use.typekit.net/ejv1ahk.css">
+  <link rel="stylesheet" href="https://use.typekit.net/nvv8uhi.css">
+  <link rel="stylesheet" href="https://use.typekit.net/tpw5sfc.css">
+
+  <!-- ==============================================
+       MAIN STYLESHEET
+       ============================================== -->
+  <link rel="stylesheet" href="asset/css/style.css?v=28">
+</head>
+
+<body>
+
+  <!-- ==============================================
+       HEADER & NAVIGATION BAR (DESKTOP)
+       Bilah navigasi mengambang (floating) dengan sudut rounded besar
+       dan gaya tombol Claymorphism timbul.
+       ============================================== -->
+  <header class="header-wrapper">
+    <nav class="navbar" id="mainNavbar" aria-label="Navigasi Utama Portfolio">
+      <!-- Brand / Nama Personal (Font: Monotalic) -->
+      <a href="#home" class="nav-brand">
+        Kerlyn Lawrance
+      </a>
+
+      <!-- Menu Navigasi Berbentuk Awan dari Aset File (image/cloud-*.webp) -->
+      <ul class="nav-menu" id="primaryNavMenu">
+        <li class="nav-item">
+          <!-- Menu Aktif dengan awan asli dari file image/cloud-tl.webp -->
+          <a href="#home" class="nav-link nav-cloud nav-cloud-home active" aria-current="page">
+            <img src="asset/image/cloud-tl.webp" alt="" class="nav-cloud-img" aria-hidden="true">
+            <span class="nav-link-text">Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#about" class="nav-link nav-cloud nav-cloud-about">
+            <img src="asset/image/cloud-tr.webp" alt="" class="nav-cloud-img" aria-hidden="true">
+            <span class="nav-link-text">About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#journey" class="nav-link nav-cloud nav-cloud-journey">
+            <img src="asset/image/cloud-bl.webp" alt="" class="nav-cloud-img" aria-hidden="true">
+            <span class="nav-link-text">Journey</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#project" class="nav-link nav-cloud nav-cloud-project">
+            <img src="asset/image/cloud-tr.webp" alt="" class="nav-cloud-img" aria-hidden="true">
+            <span class="nav-link-text">Project</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#wishlight" class="nav-link nav-cloud nav-cloud-wishlight">
+            <img src="asset/image/cloud-bl.webp" alt="" class="nav-cloud-img" aria-hidden="true">
+            <span class="nav-link-text">Wishlight</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#contact" class="nav-link nav-cloud nav-cloud-contact">
+            <img src="asset/image/cloud-tl.webp" alt="" class="nav-cloud-img" aria-hidden="true">
+            <span class="nav-link-text">Contact</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ==============================================
+       BAGIAN PERTAMA (HOME / HERO SECTION)
+       Layering Sesuai Spesifikasi:
+       1. Background dekorasi (stripes kuning tua #fedf85 & kuning muda #fde9a0)
+       2. Tulisan "A little About What I Create" (Daith fonts + yellow shadow)
+       3. Awan di sekeliling border (asset/image/cloud.webp + awan interaktif bergerak)
+       4. Border (asset/image/border.webp) di bawah tulisan
+       ============================================== -->
+  <main>
+    <section id="home" class="hero-section" aria-label="Home Hero Showcase">
+
+      <!-- Layer 1: Background Striped Wallpaper Garis ke Bawah (Wavy saat disentuh kursor) -->
+      <div class="hero-bg-wrapper" id="heroBgWrapper" aria-hidden="true">
+        <canvas id="heroBgCanvas" class="hero-wavy-canvas"></canvas>
+        <div class="hero-bg-stripes-fallback"></div>
+      </div>
+
+      <!-- Layer Bintang Dekorasi Clay Interaktif (#home) -->
+      <div class="hero-stars-layer" id="heroStarsLayer" aria-hidden="true">
+        <div class="clay-star star-yellow hero-star-1" data-star="h1" style="top: 15%; left: 8%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue hero-star-2" data-star="h2" style="top: 22%; left: 24%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow hero-star-3" data-star="h3" style="top: 16%; right: 9%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2 6.5 6.8 1.8-5.3 4.5 1.7 6.8L12 18l-5.2 3.6 1.7-6.8-5.3-4.5 6.8-1.8z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue hero-star-4" data-star="h4" style="top: 24%; right: 23%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow hero-star-5" data-star="h5" style="top: 52%; left: 5%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue hero-star-6" data-star="h6" style="top: 54%; right: 6%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2 6.5 6.8 1.8-5.3 4.5 1.7 6.8L12 18l-5.2 3.6 1.7-6.8-5.3-4.5 6.8-1.8z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow hero-star-7" data-star="h7" style="bottom: 14%; left: 12%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue hero-star-8" data-star="h8" style="bottom: 16%; right: 14%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Hero Stage Container (object-fit: contain, tidak stretch, responsif desktop & mobile) -->
+      <div class="hero-stage" id="heroStage">
+
+        <!-- Layer 4: Border Frame (Berada di bawah tulisan) -->
+        <div class="hero-border-wrap">
+          <img src="asset/image/border.webp" alt="Clay Art Board Border" class="hero-border-img" loading="eager"
+            decoding="async">
+        </div>
+
+        <!-- Layer 3: Awan di sekeliling border (asset/image/cloud.webp) -->
+        <div class="hero-clouds-wrap" id="heroCloudsWrap" aria-label="Awan dekoratif di sekeliling border">
+          <!-- Awan Interaktif yang responsif dan bergerak saat disentuh kursor -->
+          <div class="cloud-cluster cloud-tl" data-cloud="tl" title="Awan Fluffy - Sentuh aku!">
+            <div class="cloud-bob-inner">
+              <img src="asset/image/cloud-tl.webp" alt="Awan Sudut Kiri Atas">
+            </div>
+          </div>
+          <div class="cloud-cluster cloud-tr" data-cloud="tr" title="Awan Fluffy - Sentuh aku!">
+            <div class="cloud-bob-inner">
+              <img src="asset/image/cloud-tr.webp" alt="Awan Sudut Kanan Atas">
+            </div>
+          </div>
+          <div class="cloud-cluster cloud-bl" data-cloud="bl" title="Awan Fluffy - Sentuh aku!">
+            <div class="cloud-bob-inner">
+              <img src="asset/image/cloud-bl.webp" alt="Awan Sudut Kiri Bawah">
+            </div>
+          </div>
+          <div class="cloud-cluster cloud-br" data-cloud="br" title="Awan Fluffy - Sentuh aku!">
+            <div class="cloud-bob-inner">
+              <img src="asset/image/cloud-br.webp" alt="Awan Sudut Kanan Bawah">
+            </div>
+          </div>
+
+          <!-- Aset cloud.webp utuh sesuai spesifikasi untuk kompatibilitas penuh -->
+          <img src="asset/image/cloud.webp" alt="Awan Dekorasi Sekeliling Border" class="hero-cloud-main"
+            aria-hidden="true">
+        </div>
+
+        <!-- Layer 2: Tulisan "A Little About What I Create" (Animasi Pop Up saat website dibuka) -->
+        <div class="hero-text-wrap" id="heroTextWrap">
+          <!-- Eyebrow: KERLYN'S CREATIVE SPACE -->
+          <div class="hero-eyebrow font-urca">
+            <span class="hero-star-sparkle">✦</span>
+            <span class="hero-eyebrow-text">KERLYN'S CREATIVE SPACE</span>
+            <span class="hero-star-sparkle">✦</span>
+          </div>
+
+          <h1 class="hero-title" id="heroTitle" aria-label="A Little About What I Create">
+            <span class="hero-title-row">
+              <span class="pop-word anim-pop-1">
+                <span class="font-daith-small">A</span>
+              </span>
+              <span class="pop-word anim-pop-2">
+                <span class="font-daith-small">Little</span>
+              </span>
+              <span class="pop-word anim-pop-3">
+                <span class="font-daith-small">About</span>
+              </span>
+            </span>
+            <span class="hero-title-row">
+              <span class="pop-word anim-pop-4">
+                <span class="font-daith-small">What</span>
+              </span>
+              <span class="pop-word anim-pop-5">
+                <span class="font-daith-small">I</span>
+              </span>
+              <span class="pop-word anim-pop-6">
+                <span class="font-daith-small">Create</span>
+              </span>
+            </span>
+          </h1>
+
+          <!-- Tagline: GRAPHIC DESIGN PORTFOLIO -->
+          <div class="hero-tagline font-urca">
+            <span class="hero-tagline-text">GRAPHIC DESIGN PORTFOLIO</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Layer 5: Scroll Down Direction Cue (Minimalis & Transparan) -->
+      <a href="#about" class="hero-scroll-cue" id="heroScrollCue" aria-label="Scroll down for next page">
+        <div class="scroll-cue-mouse" aria-hidden="true">
+          <span class="scroll-cue-wheel"></span>
+        </div>
+        <span class="scroll-cue-text">Scroll Down for Next Page</span>
+        <span class="scroll-cue-arrow" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+      </a>
+
+    </section>
+
+    <!-- ==============================================
+         BAGIAN KEDUA (#about / ABOUT ME)
+         - Transisi Scroll: Awan hancur (scatter disperse) berubah menjadi avatar branding.webp
+         - Sisi Kiri: Foto foto1.webp & foto4.webp yang interaktif membesar saat disentuh kursor
+         - Awan-awan dekoratif yang responsif di sekeliling layout (aset cloud sebelumnya)
+         - Bintang biru & kuning interaktif (twinkle, rotate 360°, sparkle saat disentuh)
+         - Teks Hello (Monotalic - ejv1ahk.css) & Deskripsi profil (Urca - nvv8uhi.css)
+         ============================================== -->
+    <section id="about" class="about-section" aria-label="About Kerlyn Lawrance">
+
+      <!-- Transisi Scroll: Awan hancur menjadi karakter branding.webp -->
+      <div class="cloud-shatter-transition" id="cloudShatterTransition" aria-hidden="true">
+        <div class="shatter-piece piece-1"><img src="asset/image/cloud-tl.webp" alt="Cloud Fragment 1"></div>
+        <div class="shatter-piece piece-2"><img src="asset/image/cloud-tr.webp" alt="Cloud Fragment 2"></div>
+        <div class="shatter-piece piece-3"><img src="asset/image/cloud-bl.webp" alt="Cloud Fragment 3"></div>
+        <div class="shatter-piece piece-4"><img src="asset/image/cloud-br.webp" alt="Cloud Fragment 4"></div>
+        <div class="shatter-burst-glow"></div>
+      </div>
+
+      <!-- Transisi Page Home ke About: Karakter branding.webp Berjatuhan Lucu (Jatuh Sekali Cepat & Elegan) -->
+      <div class="falling-branding-transition" id="fallingBrandingTransition" aria-hidden="true">
+        <div class="falling-brand-item fb-1"
+          style="--fb-left: 6%; --fb-size: 52px; --fb-delay: 0.02s; --fb-dur: 1.4s; --fb-rot: -18deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+        <div class="falling-brand-item fb-2"
+          style="--fb-left: 18%; --fb-size: 66px; --fb-delay: 0.10s; --fb-dur: 1.5s; --fb-rot: 14deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+        <div class="falling-brand-item fb-3"
+          style="--fb-left: 32%; --fb-size: 46px; --fb-delay: 0.04s; --fb-dur: 1.3s; --fb-rot: -22deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+        <div class="falling-brand-item fb-4"
+          style="--fb-left: 47%; --fb-size: 76px; --fb-delay: 0.16s; --fb-dur: 1.6s; --fb-rot: 10deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+        <div class="falling-brand-item fb-5"
+          style="--fb-left: 61%; --fb-size: 56px; --fb-delay: 0.08s; --fb-dur: 1.4s; --fb-rot: -14deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+        <div class="falling-brand-item fb-6"
+          style="--fb-left: 75%; --fb-size: 70px; --fb-delay: 0.18s; --fb-dur: 1.5s; --fb-rot: 20deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+        <div class="falling-brand-item fb-7"
+          style="--fb-left: 89%; --fb-size: 48px; --fb-delay: 0.12s; --fb-dur: 1.35s; --fb-rot: -8deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+        <div class="falling-brand-item fb-8"
+          style="--fb-left: 12%; --fb-size: 60px; --fb-delay: 0.20s; --fb-dur: 1.5s; --fb-rot: 16deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+        <div class="falling-brand-item fb-9"
+          style="--fb-left: 53%; --fb-size: 64px; --fb-delay: 0.24s; --fb-dur: 1.55s; --fb-rot: -20deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+        <div class="falling-brand-item fb-10"
+          style="--fb-left: 83%; --fb-size: 52px; --fb-delay: 0.15s; --fb-dur: 1.4s; --fb-rot: 12deg;"
+          title="Kerlyn Avatar!">
+          <img src="asset/image/branding.webp" alt="">
+        </div>
+      </div>
+
+      <!-- Background Dekorasi Bintang Biru & Kuning Interaktif -->
+      <div class="about-stars-layer" id="aboutStarsLayer" aria-hidden="true">
+        <!-- Bintang Kuning & Biru Tersebar -->
+        <div class="clay-star star-yellow star-1" data-star="1" style="top: 6%; left: 8%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-2" data-star="2" style="top: 14%; left: 45%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow star-3" data-star="3" style="top: 7%; right: 10%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2 6.5 6.8 1.8-5.3 4.5 1.7 6.8L12 18l-5.2 3.6 1.7-6.8-5.3-4.5 6.8-1.8z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-4" data-star="4" style="top: 42%; left: 3%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow star-5" data-star="5" style="top: 52%; left: 45%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-6" data-star="6" style="top: 46%; right: 4%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2 6.5 6.8 1.8-5.3 4.5 1.7 6.8L12 18l-5.2 3.6 1.7-6.8-5.3-4.5 6.8-1.8z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow star-7" data-star="7" style="top: 86%; left: 16%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-8" data-star="8" style="top: 88%; right: 12%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Awan Dekorasi Sekeliling About Section (Awan yang sebelumnya dipakai) -->
+      <div class="about-clouds-layer" aria-hidden="true">
+        <div class="about-cloud about-cloud-1 cloud-cluster" data-cloud="tl" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tl.webp" alt="Awan Dekorasi About 1">
+          </div>
+        </div>
+        <div class="about-cloud about-cloud-2 cloud-cluster" data-cloud="tr" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tr.webp" alt="Awan Dekorasi About 2">
+          </div>
+        </div>
+        <div class="about-cloud about-cloud-3 cloud-cluster" data-cloud="bl" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-bl.webp" alt="Awan Dekorasi About 3">
+          </div>
+        </div>
+        <div class="about-cloud about-cloud-4 cloud-cluster" data-cloud="br" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-br.webp" alt="Awan Dekorasi About 4">
+          </div>
+        </div>
+      </div>
+
+      <!-- Container Utama About (2 Kolom: Kiri Foto, Kanan Teks & Branding) -->
+      <div class="about-container">
+
+        <!-- KOLOM KIRI: Galeri Foto Interaktif (Membesar saat disentuh kursor) -->
+        <div class="about-photos-column" id="aboutPhotosCol">
+          <div class="photo-cards-wrapper">
+
+            <!-- Foto 1: Portrait Close-up (foto1.webp / foto1.JPG) -->
+            <div class="photo-card photo-card-1" data-photo="1" title="Kerlyn Lawrance - Sentuh untuk Memperbesar">
+              <div class="photo-tape tape-top"></div>
+              <div class="photo-frame-inner">
+                <img src="asset/image/foto1.webp" alt="Kerlyn Lawrance Portrait" class="photo-img" loading="lazy">
+              </div>
+            </div>
+
+            <!-- Foto 2: Full-body Standing (foto4.webp) -->
+            <div class="photo-card photo-card-2" data-photo="2" title="Kerlyn Lawrance - Sentuh untuk Memperbesar">
+              <div class="photo-tape tape-bottom"></div>
+              <div class="photo-frame-inner">
+                <img src="asset/image/foto4.webp" alt="Kerlyn Lawrance Standing Portrait" class="photo-img"
+                  loading="lazy">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN: Teks Hello, Branding Avatar, & Deskripsi Menarik -->
+        <div class="about-content-column">
+
+          <!-- Header Baris Hello & Avatar Karakter Branding -->
+          <div class="about-header-row">
+            <!-- Avatar Branding yang muncul dari awan yang hancur saat scroll -->
+            <div class="branding-avatar-badge" id="brandingAvatarBadge" title="Meet Kerlyn's Avatar!">
+              <div class="avatar-ring">
+                <img src="asset/image/branding.webp" alt="Kerlyn Lawrance Illustrated Avatar" class="branding-img"
+                  loading="eager">
+              </div>
+              <span class="avatar-sparkle">✦</span>
+            </div>
+
+            <div class="about-greeting-text">
+              <span class="about-subtag"> A LITTLE ABOUT ME </span>
+              <!-- Tulisan Hello dengan Font Monotalic (ejv1ahk.css) dan Animasi Pop Up -->
+              <h2 class="about-hello-title" id="aboutHelloTitle" aria-label="Hello!">
+                <span class="hello-pop-word">
+                  <span class="hello-pop-char" style="--c-delay: 0.05s">H</span>
+                  <span class="hello-pop-char" style="--c-delay: 0.12s">e</span>
+                  <span class="hello-pop-char" style="--c-delay: 0.19s">l</span>
+                  <span class="hello-pop-char" style="--c-delay: 0.26s">l</span>
+                  <span class="hello-pop-char" style="--c-delay: 0.33s">o</span>
+                  <span class="hello-pop-char" style="--c-delay: 0.40s">!</span>
+                </span>
+              </h2>
+            </div>
+          </div>
+
+          <!-- Kartu Claymorphism Deskripsi Profil (Font: Urca - nvv8uhi.css) -->
+          <div class="about-card-clay">
+
+
+            <!-- Paragraf 1 Deskripsi Profil -->
+            <p class="about-paragraph font-urca">
+              My name is <strong class="highlight-name">Kerlyn Lawrance</strong>, a 20 year old Visual Communication
+              Design (DKV) student at Universitas Pelita Harapan, class of 2024, originally from Medan, North Sumatra. I
+              am passionate about learning, exploring new ideas, and continuously developing my skills to create
+              engaging and meaningful design works.
+            </p>
+
+            <!-- Divider Clay Halus -->
+            <div class="about-card-divider" aria-hidden="true">
+              <span class="divider-line"></span>
+              <span class="divider-star">✦</span>
+              <span class="divider-line"></span>
+            </div>
+
+            <!-- Paragraf 2 Deskripsi Profil -->
+            <p class="about-paragraph font-urca">
+              Thank you for viewing my portfolio. Each piece reflects my creativity, technical skills, and passion for
+              creative expression. I invite you to explore my journey and the ideas behind the works presented here.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==============================================
+         BAGIAN KETIGA (JOURNEY SECTION)
+         Memuat:
+         - Sisi Kiri: Foto interaktif (foto3.webp berubah menjadi foto2.webp saat kursor mendekat / hover)
+         - Sisi Kanan: Accordion interaktif yang terbuka saat ditekan:
+           1. Experiences (Publication Division Member & Committee)
+           2. Education (Universitas Pelita Harapan UPH - DKV)
+           3. Expertise (Vector SVG: InDesign, Illustrator, Photoshop, CapCut, Canva, Procreate)
+         ============================================== -->
+    <section id="journey" class="journey-section" aria-label="Kerlyn Lawrance Creative Journey">
+
+      <!-- Background Dekorasi Bintang Senja Halus -->
+      <div class="journey-stars-layer" aria-hidden="true">
+        <div class="clay-star star-blue star-j1" style="top: 8%; left: 6%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow star-j2" style="top: 14%; right: 8%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-j3" style="top: 78%; left: 10%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2 6.5 6.8 1.8-5.3 4.5 1.7 6.8L12 18l-5.2 3.6 1.7-6.8-5.3-4.5 6.8-1.8z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow star-j4" style="bottom: 8%; right: 12%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Dekorasi Awan Organik Sekeliling Journey (Layout Khusus & Bervariasi) -->
+      <div class="journey-clouds-layer" aria-hidden="true">
+        <!-- Awan 1: Melayang Asimetris di Kiri Atas Header -->
+        <div class="journey-cloud journey-cloud-1 cloud-cluster" data-cloud="top" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tr.webp" alt="Awan Dekorasi Journey 1">
+          </div>
+        </div>
+        <!-- Awan 2: Melayang di Sisi Kanan Mendampingi Foto Interaktif -->
+        <div class="journey-cloud journey-cloud-2 cloud-cluster" data-cloud="right" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-br.webp" alt="Awan Dekorasi Journey 2">
+          </div>
+        </div>
+        <!-- Awan 3: Melayang di Sisi Kiri Tengah Menyusuri Accordion -->
+        <div class="journey-cloud journey-cloud-3 cloud-cluster" data-cloud="left" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-bl.webp" alt="Awan Dekorasi Journey 3">
+          </div>
+        </div>
+        <!-- Awan 4: Mengapung di Kanan Bawah Transisi Section -->
+        <div class="journey-cloud journey-cloud-4 cloud-cluster" data-cloud="br" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tl.webp" alt="Awan Dekorasi Journey 4">
+          </div>
+        </div>
+      </div>
+
+      <!-- Container Utama 2 Kolom: Kiri Accordion Informasi, Kanan Foto Interaktif -->
+      <div class="journey-container">
+
+        <!-- KOLOM KIRI: Accordion Interaktif (Experiences, Education, Expertise) -->
+        <div class="journey-content-column">
+
+          <!-- Header Section Journey -->
+          <div class="journey-header">
+            <span class="journey-subtag font-urca">MY BACKGROUND & TRACK RECORD</span>
+            <h2 class="journey-main-title font-urca">Journey</h2>
+          </div>
+
+          <!-- Container Accordion: Buka hanya ketika kursor menekan -->
+          <div class="journey-accordion-list" id="journeyAccordionList">
+
+            <!-- 1. ITEM ACCORDION: EXPERIENCES -->
+            <div class="journey-accordion-item" data-accordion="experiences">
+              <button type="button" class="journey-accordion-header" aria-expanded="false"
+                aria-controls="acc-content-experiences">
+                <div class="header-left">
+                  <span class="accordion-num font-urca">01</span>
+                  <!-- Judul Experiences: Font nvv8uhi.css berwarna biru #8aabce -->
+                  <h3 class="accordion-heading font-urca color-blue">Experiences</h3>
+                </div>
+                <div class="header-right">
+                  <span class="accordion-badge font-urca">Roles</span>
+                  <span class="accordion-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" class="chevron-svg">
+                      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </div>
+              </button>
+
+              <div class="journey-accordion-body" id="acc-content-experiences">
+                <div class="accordion-inner-content">
+
+                  <!-- Grup 1: Publication Division Member -->
+                  <div class="experience-group">
+                    <!-- Judul Publication Division Member: Font tpw5sfc.css -->
+                    <h4 class="journey-role-title font-daith">Publication Division Member</h4>
+                    <ul class="journey-items-list">
+                      <!-- Informasi lainnya: Font nvv8uhi.css urca semibold berwarna #754c24 -->
+                      <li class="journey-list-item font-urca color-brown">
+                        <span class="item-bullet">✦</span>
+                        <span class="item-text">HMDKV UPH 2025–2026</span>
+                      </li>
+                      <li class="journey-list-item font-urca color-brown">
+                        <span class="item-bullet">✦</span>
+                        <span class="item-text">HMDKV UPH 2026–2027</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="accordion-divider" aria-hidden="true">
+                    <span class="divider-line"></span>
+                    <span class="divider-star">✦</span>
+                    <span class="divider-line"></span>
+                  </div>
+
+                  <!-- Grup 2: Publication Division Committee -->
+                  <div class="experience-group">
+                    <!-- Judul Publication Division Committee: Font tpw5sfc.css -->
+                    <h4 class="journey-role-title font-daith">Publication Division Committee</h4>
+                    <div class="committee-grid">
+                      <!-- Informasi lainnya: Font nvv8uhi.css urca semibold berwarna #754c24 -->
+                      <div class="committee-card font-urca color-brown">
+                        <span class="committee-badge">2025</span>
+                        <span class="committee-name">Comifuro 2025</span>
+                      </div>
+                      <div class="committee-card font-urca color-brown">
+                        <span class="committee-badge">2025, 2026</span>
+                        <span class="committee-name">REFORMA DKV UPH 2025, 2026</span>
+                      </div>
+                      <div class="committee-card font-urca color-brown">
+                        <span class="committee-badge">2025</span>
+                        <span class="committee-name">International Poster Exhibition 2025</span>
+                      </div>
+                      <div class="committee-card font-urca color-brown">
+                        <span class="committee-badge">2026</span>
+                        <span class="committee-name">UPH Design Week 2026</span>
+                      </div>
+                      <div class="committee-card font-urca color-brown">
+                        <span class="committee-badge">2025, 2026</span>
+                        <span class="committee-name">DKV UPH Welcoming Party 2025, 2026</span>
+                      </div>
+                      <div class="committee-card font-urca color-brown">
+                        <span class="committee-badge">2026</span>
+                        <span class="committee-name">DKV UPH Awards 2026</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. ITEM ACCORDION: EDUCATION -->
+            <div class="journey-accordion-item" data-accordion="education">
+              <button type="button" class="journey-accordion-header" aria-expanded="false"
+                aria-controls="acc-content-education">
+                <div class="header-left">
+                  <span class="accordion-num font-urca">02</span>
+                  <!-- Judul Education: Font nvv8uhi.css berwarna biru #8aabce -->
+                  <h3 class="accordion-heading font-urca color-blue">Education</h3>
+                </div>
+                <div class="header-right">
+                  <span class="accordion-badge font-urca">College</span>
+                  <span class="accordion-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" class="chevron-svg">
+                      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </div>
+              </button>
+
+              <div class="journey-accordion-body" id="acc-content-education">
+                <div class="accordion-inner-content">
+                  <div class="education-card-clay">
+                    <div class="edu-details">
+                      <!-- Judul Universitas Pelita Harapan (UPH): Font tpw5sfc.css -->
+                      <h4 class="journey-role-title font-daith">Universitas Pelita Harapan (UPH)</h4>
+                      <!-- Informasi lainnya: Font nvv8uhi.css urca semibold berwarna #754c24 -->
+                      <p class="education-degree font-urca color-brown">
+                        Visual Communication Design (DKV) 2024–Present
+                      </p>
+                      <div class="edu-tag-pill font-urca">
+                        <span>Undergraduate Student</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. ITEM ACCORDION: EXPERTISE -->
+            <div class="journey-accordion-item" data-accordion="expertise">
+              <button type="button" class="journey-accordion-header" aria-expanded="false"
+                aria-controls="acc-content-expertise">
+                <div class="header-left">
+                  <span class="accordion-num font-urca">03</span>
+                  <!-- Judul Expertise: Font nvv8uhi.css berwarna biru #8aabce -->
+                  <h3 class="accordion-heading font-urca color-blue">Expertise</h3>
+                </div>
+                <div class="header-right">
+                  <span class="accordion-badge font-urca">Software</span>
+                  <span class="accordion-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" class="chevron-svg">
+                      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </div>
+              </button>
+
+              <div class="journey-accordion-body" id="acc-content-expertise">
+                <div class="accordion-inner-content">
+                  <!-- Grid 6 Software Design & Media Tools -->
+                  <div class="expertise-tools-grid">
+
+                    <!-- 1. Adobe InDesign -->
+                    <div class="software-card tool-indesign" title="Adobe InDesign">
+                      <div class="tool-svg-icon" aria-hidden="true">
+                        <img src="asset/image/indesign.webp" alt="Adobe InDesign" class="tool-img">
+                      </div>
+                      <span class="tool-name font-urca color-brown">Adobe InDesign</span>
+                    </div>
+
+                    <!-- 2. Adobe Illustrator -->
+                    <div class="software-card tool-illustrator" title="Adobe Illustrator">
+                      <div class="tool-svg-icon" aria-hidden="true">
+                        <img src="asset/image/illustrator.webp" alt="Adobe Illustrator" class="tool-img">
+                      </div>
+                      <span class="tool-name font-urca color-brown">Adobe Illustrator</span>
+                    </div>
+
+                    <!-- 3. Adobe Photoshop -->
+                    <div class="software-card tool-photoshop" title="Adobe Photoshop">
+                      <div class="tool-svg-icon" aria-hidden="true">
+                        <img src="asset/image/photoshop.webp" alt="Adobe Photoshop" class="tool-img">
+                      </div>
+                      <span class="tool-name font-urca color-brown">Adobe Photoshop</span>
+                    </div>
+
+                    <!-- 4. Procreate -->
+                    <div class="software-card tool-procreate" title="Procreate">
+                      <div class="tool-svg-icon tool-img-procreate" aria-hidden="true">
+                        <img src="asset/image/procreate.webp" alt="Procreate" class="tool-img">
+                      </div>
+                      <span class="tool-name font-urca color-brown">Procreate</span>
+                    </div>
+
+                    <!-- 5. Canva -->
+                    <div class="software-card tool-canva" title="Canva">
+                      <div class="tool-svg-icon tool-img-canva" aria-hidden="true">
+                        <img src="asset/image/canva.svg" alt="Canva" class="tool-img">
+                      </div>
+                      <span class="tool-name font-urca color-brown">Canva</span>
+                    </div>
+
+                    <!-- 6. CapCut -->
+                    <div class="software-card tool-capcut" title="CapCut">
+                      <div class="tool-svg-icon tool-img-capcut" aria-hidden="true">
+                        <img src="asset/image/capcut.webp" alt="CapCut" class="tool-img">
+                      </div>
+                      <span class="tool-name font-urca color-brown">CapCut</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN: Foto Interaktif (foto3.webp berubah jadi foto2.webp & menetap) -->
+        <div class="journey-photo-column">
+          <div class="journey-photo-card" id="journeyPhotoCard" role="region"
+            aria-label="Interactive Journey Photo Card">
+            <div class="photo-tape tape-top"></div>
+
+            <div class="journey-frame-inner">
+              <div class="photo-morph-wrapper">
+                <!-- Foto Pertama: asset/image/foto3.webp (Tampil Default) -->
+                <img src="asset/image/foto3.webp" alt="Kerlyn Lawrance Photo 1" class="morph-img img-front"
+                  loading="lazy">
+
+                <!-- Foto Kedua: asset/image/foto2.webp (Berubah saat disentuh kursor & menetap) -->
+                <img src="asset/image/foto2.webp" alt="Kerlyn Lawrance Photo 2" class="morph-img img-back"
+                  loading="lazy">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Tombol Download My CV -->
+          <a href="asset/image/Kerlyn-Lawrance.pdf" download="Kerlyn-Lawrance.pdf" target="_blank"
+            rel="noopener noreferrer" class="cv-download-btn font-urca" id="downloadCvBtn" aria-label="Download My CV">
+            <span class="cv-btn-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </span>
+            <span class="cv-btn-text">Download My CV</span>
+          </a>
+
+          <!-- Game Preview Card: Hopping Through My Journey -->
+          <div class="journey-game-card font-urca" id="journeyGameCard" role="button" tabindex="0"
+            aria-label="Play Mini Game: Hopping Through My Journey">
+            <div class="game-card-art">
+              <div class="game-card-cloud-base">
+                <img src="asset/image/cloud-bl.webp" alt="" class="card-cloud-img" aria-hidden="true">
+              </div>
+              <div class="game-card-duck-wrap">
+                <img src="asset/image/branding.webp" alt="Purple Duck Mascot" class="game-card-duck-img">
+              </div>
+              <span class="game-card-star star-card-1" aria-hidden="true">✦</span>
+              <span class="game-card-star star-card-2" aria-hidden="true">✦</span>
+              <span class="game-card-star star-card-3" aria-hidden="true">✦</span>
+            </div>
+            <div class="game-card-body">
+              <span class="game-card-badge">MINI GAME</span>
+              <h3 class="game-card-title">Hopping Through My Journey</h3>
+              <p class="game-card-desc">
+                Every cloud is a new step, every star is a little achievement. Help me to reach new heights!
+              </p>
+              <div class="game-card-action">
+                <span class="game-card-cta-text">Hop Into My World</span>
+                <span class="game-card-cta-arrow" aria-hidden="true">➔</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==============================================
+         MODAL MINI GAME: HOPPING THROUGH MY JOURNEY
+         Square 1:1 Aspect Ratio Modal Overlay
+         ============================================== -->
+    <div class="game-modal-backdrop" id="journeyGameModalBackdrop" style="display: none;" aria-hidden="true"
+      role="dialog" aria-modal="true" aria-labelledby="gameModalTitle">
+      <div class="game-square-container" id="gameSquareContainer">
+        <!-- Tombol Tutup (X) di Pojok Kanan Atas Frame -->
+        <button type="button" class="game-modal-close-btn" id="closeGameModalBtn" aria-label="Close Game">✕</button>
+
+        <!-- Canvas Utama Permainan (1:1 Square) -->
+        <canvas id="journeyGameCanvas" width="560" height="560"></canvas>
+
+        <!-- HUD Bar (Selama Bermain) -->
+        <div class="game-hud-bar" id="gameHudBar" style="display: none;">
+          <div class="hud-pill hud-score">
+            <span class="hud-icon">★</span>
+            <span class="hud-val" id="hudScoreVal">0</span>
+          </div>
+          <div class="hud-pill hud-timer">
+            <span class="hud-icon">⏱</span>
+            <span class="hud-val" id="hudTimerVal">60</span>s
+          </div>
+          <div class="hud-controls-group">
+            <button type="button" class="hud-btn" id="btnGameMute" aria-label="Toggle Sound">🔊</button>
+            <button type="button" class="hud-btn" id="btnGamePause" aria-label="Pause Game">⏸</button>
+          </div>
+        </div>
+
+        <!-- Kontrol Sentuh Mobile (Bottom Corners) -->
+        <div class="game-mobile-touch-bar" id="gameMobileTouchBar" style="display: none;">
+          <button type="button" class="game-touch-btn" id="btnTouchLeft" aria-label="Move Left">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="game-touch-btn" id="btnTouchRight" aria-label="Move Right">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- 1. OVERLAY: START SCREEN -->
+        <div class="game-state-overlay is-visible" id="gameStartOverlay">
+          <div class="state-overlay-content">
+            <div class="start-art-wrap">
+              <div class="start-cloud-base">
+                <img src="asset/image/cloud-tr.webp" alt="" class="start-cloud-img" aria-hidden="true">
+              </div>
+              <img src="asset/image/branding.webp" alt="Purple Duck Mascot" class="start-duck-img">
+              <span class="decor-sparkle sp1" aria-hidden="true">✦</span>
+              <span class="decor-sparkle sp2" aria-hidden="true">✦</span>
+              <span class="decor-sparkle sp3" aria-hidden="true">✦</span>
+            </div>
+
+            <span class="state-subtag">PERSONAL JOURNEY MINI GAME</span>
+            <h2 class="state-title" id="gameModalTitle">Hopping Through My Journey</h2>
+            <p class="state-quote font-urca">
+              “Every cloud is a new step, every star is a little achievement. Help me to reach new heights!”
+            </p>
+
+            <div class="state-instructions font-urca">
+              <div class="inst-pill">
+                <span class="inst-key">◀ ▶ / A D</span>
+                <span class="inst-desc">Move &amp; Jump Between Clouds</span>
+              </div>
+              <div class="inst-pill">
+                <span class="inst-key">★ +10 Pts</span>
+                <span class="inst-desc">Collect Golden Stars in 60s!</span>
+              </div>
+            </div>
+
+            <button type="button" class="btn-start-hopping font-urca" id="btnStartHopping">
+              <span class="btn-hop-text">Start Hopping!</span>
+              <span class="btn-hop-sparkle" aria-hidden="true">✦</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. OVERLAY: PAUSE SCREEN -->
+        <div class="game-state-overlay" id="gamePauseOverlay" style="display: none;">
+          <div class="state-overlay-content">
+            <h2 class="state-title">Game Paused</h2>
+            <p class="state-quote font-urca">Catch your breath among the clouds!</p>
+            <div class="pause-actions font-urca">
+              <button type="button" class="btn-start-hopping" id="btnResumeGame">Resume Hop ➔</button>
+              <button type="button" class="btn-restart-game" id="btnRestartGame">Restart ↺</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. OVERLAY: GAME OVER SCREEN -->
+        <div class="game-state-overlay" id="gameOverOverlay" style="display: none;">
+          <div class="state-overlay-content">
+            <div class="celebrate-art-wrap">
+              <div class="start-cloud-base">
+                <img src="asset/image/cloud-tr.webp" alt="" class="start-cloud-img" aria-hidden="true">
+              </div>
+              <img src="asset/image/branding.webp" alt="Celebrating Purple Duck" class="celebrate-duck-img">
+              <span class="celebrate-star cs1" aria-hidden="true">★</span>
+              <span class="celebrate-star cs2" aria-hidden="true">★</span>
+              <span class="celebrate-star cs3" aria-hidden="true">★</span>
+            </div>
+
+            <span class="state-subtag">CHALLENGE COMPLETE</span>
+            <h2 class="state-title">Journey Completed!</h2>
+            <p class="state-result-summary font-urca">
+              Every little step counts! You collected <span class="highlight-score" id="goScoreText">0</span> points
+              and gathered <span class="highlight-stars" id="goStarsText">0</span> little achievements along the way.
+            </p>
+
+            <div class="state-score-grid font-urca">
+              <div class="stat-card">
+                <span class="stat-lbl">Final Score</span>
+                <span class="stat-val" id="statFinalScore">0</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-lbl">Stars Collected</span>
+                <span class="stat-val" id="statFinalStars">0</span>
+              </div>
+            </div>
+
+            <div class="game-over-btn-group font-urca">
+              <button type="button" class="btn-start-hopping" id="btnPlayAgain">
+                <span>Hop Again!</span>
+                <span aria-hidden="true">↺</span>
+              </button>
+              <button type="button" class="btn-back-journey" id="btnBackToJourney">
+                <span>Back to My Journey</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==============================================
+         BAGIAN KEEMPAT (PROJECT SECTION)
+         5 Block Proyek Desain Interaktif.
+         Ketika balok ditekan, muncul detail lengkap proyek.
+         ============================================== -->
+    <section id="project" class="project-section" aria-label="Curated Design Projects">
+
+      <!-- Ornamen Cahaya Transisi Senja Menuju Malam (dihilangkan agar gradasi langit mulus tanpa bercak kuning) -->
+      <!-- <div class="project-ambient-light" aria-hidden="true"></div> -->
+
+      <!-- Dekorasi Awan Menjuntai Zig-Zag Sekeliling Project (Layout Dinamis & Bervariasi) -->
+      <div class="project-clouds-layer" aria-hidden="true">
+        <!-- Awan 1: Kanan Atas di Atas Judul Proyek -->
+        <div class="project-cloud project-cloud-1 cloud-cluster" data-cloud="tr" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-bl.webp" alt="Awan Dekorasi Project 1">
+          </div>
+        </div>
+        <!-- Awan 2: Kiri Atas Membingkai Proyek Soordle -->
+        <div class="project-cloud project-cloud-2 cloud-cluster" data-cloud="left" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tl.webp" alt="Awan Dekorasi Project 2">
+          </div>
+        </div>
+        <!-- Awan 3: Kanan Tengah Mengambang di Antara Baris Proyek -->
+        <div class="project-cloud project-cloud-3 cloud-cluster" data-cloud="right" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tr.webp" alt="Awan Dekorasi Project 3">
+          </div>
+        </div>
+        <!-- Awan 4: Kiri Bawah Menyusuri Proyek Akhir -->
+        <div class="project-cloud project-cloud-4 cloud-cluster" data-cloud="left" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-br.webp" alt="Awan Dekorasi Project 4">
+          </div>
+        </div>
+        <!-- Awan 5: Kanan Bawah Halus Menuju Transisi Wishlight -->
+        <div class="project-cloud project-cloud-5 cloud-cluster" data-cloud="bottom" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tl.webp" alt="Awan Dekorasi Project 5">
+          </div>
+        </div>
+      </div>
+
+      <div class="project-container">
+
+        <!-- Header Section Project -->
+        <div class="project-header">
+          <span class="project-subtag font-urca">CURATED WORKS • 2024–2026</span>
+          <h2 class="project-main-title font-urca">Selected Projects</h2>
+          <p class="project-subtitle font-urca">
+            A little collection of things I've created, explored, and learned along the way. From playful experiments to
+            meaningful projects,<br class="project-subtitle-br">
+            each piece represents a different perspective, a new discovery, and a little part of who I am as a designer.
+          </p>
+        </div>
+
+        <!-- Grid 5 Balok Proyek Interaktif -->
+        <div class="project-grid">
+
+          <!-- Balok 1: Brand Identity & Packaging Design "Soordle" -->
+          <article class="project-block-card" data-proj="1" tabindex="0" role="button"
+            aria-label="Buka detail proyek Brand Identity &amp; Packaging Design &quot;Soordle&quot;">
+            <div class="project-card-image-wrap">
+              <img src="asset/image/soordle0.webp" alt="Brand Identity &amp; Packaging Design &quot;Soordle&quot;"
+                class="project-card-img" loading="lazy">
+              <div class="project-card-overlay">
+                <span class="project-view-badge font-urca">View Project</span>
+              </div>
+            </div>
+            <div class="project-card-info">
+              <h3 class="project-card-title font-urca">Brand Identity &amp; Packaging Design "Soordle"</h3>
+              <p class="project-card-desc font-urca">
+                A branding project for a playful, gluten-free instant noodle brand made from local grains.
+              </p>
+            </div>
+          </article>
+
+          <!-- Balok 2: Brand Identity & Rebranding "Lion Air" -->
+          <article class="project-block-card" data-proj="2" tabindex="0" role="button"
+            aria-label="Buka detail proyek Brand Identity &amp; Rebranding &quot;Lion Air&quot;">
+            <div class="project-card-image-wrap">
+              <img src="asset/image/lion0.webp" alt="Brand Identity &amp; Rebranding &quot;Lion Air&quot;"
+                class="project-card-img" loading="lazy">
+              <div class="project-card-overlay">
+                <span class="project-view-badge font-urca">View Project</span>
+              </div>
+            </div>
+            <div class="project-card-info">
+              <h3 class="project-card-title font-urca">Brand Identity &amp; Rebranding "Lion Air"</h3>
+              <p class="project-card-desc font-urca">
+                A rebranding project to redefine Lion Air as an affordable and reliable airline.
+              </p>
+            </div>
+          </article>
+
+          <!-- Balok 3: Travel Poster Design "Los Angeles" -->
+          <article class="project-block-card" data-proj="3" tabindex="0" role="button"
+            aria-label="Buka detail proyek Travel Poster Design &quot;Los Angeles&quot;">
+            <div class="project-card-image-wrap">
+              <img src="asset/image/losangeles0.webp" alt="Travel Poster Design &quot;Los Angeles&quot;"
+                class="project-card-img" loading="lazy">
+              <div class="project-card-overlay">
+                <span class="project-view-badge font-urca">View Project</span>
+              </div>
+            </div>
+            <div class="project-card-info">
+              <h3 class="project-card-title font-urca">Travel Poster Design "Los Angeles"</h3>
+              <p class="project-card-desc font-urca">
+                A travel poster design inspired by the vibrant culture and iconic identity of Los Angeles.
+              </p>
+            </div>
+          </article>
+
+          <!-- Balok 4: Editorial Design "The Original Dog Bible" -->
+          <article class="project-block-card" data-proj="4" tabindex="0" role="button"
+            aria-label="Buka detail proyek Editorial Design &quot;The Original Dog Bible&quot;">
+            <div class="project-card-image-wrap">
+              <img src="asset/image/book0.webp" alt="Editorial Design &quot;The Original Dog Bible&quot;"
+                class="project-card-img" loading="lazy">
+              <div class="project-card-overlay">
+                <span class="project-view-badge font-urca">View Project</span>
+              </div>
+            </div>
+            <div class="project-card-info">
+              <h3 class="project-card-title font-urca">Editorial Design "The Original Dog Bible"</h3>
+              <p class="project-card-desc font-urca">
+                An editorial book layout project exploring the world of dogs through engaging visuals and organized
+                content.
+              </p>
+            </div>
+          </article>
+
+          <!-- Balok 5: Self Identity -->
+          <article class="project-block-card" data-proj="5" tabindex="0" role="button"
+            aria-label="Buka detail proyek Self Identity">
+            <div class="project-card-image-wrap">
+              <img src="asset/image/self-identity0.webp" alt="Self Identity" class="project-card-img" loading="lazy">
+              <div class="project-card-overlay">
+                <span class="project-view-badge font-urca">View Project</span>
+              </div>
+            </div>
+            <div class="project-card-info">
+              <h3 class="project-card-title font-urca">Self Identity</h3>
+              <p class="project-card-desc font-urca">
+                A personal branding project exploring self identity through icons, symbols, and visual expression.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Modal Detail Proyek yang Muncul Saat Balok Ditekan -->
+    <div class="project-modal-backdrop" id="projectModalBackdrop" aria-hidden="true">
+      <div class="project-modal-container" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+        <button type="button" class="project-modal-close" id="projectModalCloseBtn"
+          aria-label="Tutup Detail Proyek">✕</button>
+        <div class="project-modal-body">
+          <div class="modal-image-col" id="modalImageCol">
+            <img src="" alt="" id="modalProjectImg" class="modal-hero-img">
+            <button type="button" class="modal-gallery-nav modal-gallery-prev" id="modalGalleryPrev"
+              aria-label="Foto sebelumnya" style="display: none;">‹</button>
+            <button type="button" class="modal-gallery-nav modal-gallery-next" id="modalGalleryNext"
+              aria-label="Foto berikutnya" style="display: none;">›</button>
+            <div class="modal-gallery-dots" id="modalGalleryDots" style="display: none;"></div>
+          </div>
+          <div class="modal-content-col">
+            <h3 class="modal-title font-urca" id="modalProjectTitle"></h3>
+            <div class="modal-meta font-urca">
+              <span id="modalProjectRole" class="modal-role"></span>
+              <span class="modal-dot">•</span>
+              <span id="modalProjectYear" class="modal-year"></span>
+            </div>
+            <div class="modal-divider"></div>
+            <p class="modal-desc font-urca" id="modalProjectDesc"></p>
+            <div class="modal-deliverables">
+              <h4 class="deliverables-title font-urca">Deliverables & Highlights</h4>
+              <ul class="deliverables-list font-urca" id="modalProjectHighlights"></ul>
+            </div>
+
+            <!-- Compact Project CTA Section (Navigasi Langsung ke #contact) -->
+            <div class="modal-project-cta" id="modalProjectCta">
+              <div class="modal-cta-content">
+                <span class="modal-cta-sparkle" aria-hidden="true">✦</span>
+                <p class="modal-cta-invite font-urca" id="modalCtaInvite">Curious about my creative approach?</p>
+              </div>
+              <a href="#contact" class="modal-cta-btn font-urca" id="modalCtaBtn"
+                aria-label="Navigate to Contact section">
+                <span class="modal-cta-btn-text" id="modalCtaBtnText">Let’s Connect</span>
+                <span class="modal-cta-btn-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         BAGIAN KELIMA (#WISHLIGHT SECTION - CHINESE LANTERN NIGHT SKY)
+         Website interaktif tradisi lentera Tionghoa di langit malam digital.
+         Pengunjung menulis harapan secara anonim & menerbangkan lentera ke angkasa.
+         ============================================== -->
+    <section id="wishlight" class="play-section" aria-label="Chinese Lantern Interactive Night Sky">
+
+      <!-- Canvas Langit Malam Penuh Bintang & Lentera Bercahaya -->
+      <canvas id="nightSkyCanvas" class="night-sky-canvas"></canvas>
+
+      <!-- Bulan Sabit Lembut & Awan Malam Melayang -->
+      <div class="celestial-layer" aria-hidden="true">
+        <div class="celestial-moon" id="celestialMoon" title="The Quiet Moon • Click for Sky Archives">
+          <div class="moon-crescent"></div>
+          <div class="moon-glow"></div>
+        </div>
+      </div>
+
+      <!-- Wadah Lentera Interaktif di Angkasa -->
+      <div class="lantern-sky-area" id="lanternSkyArea" role="region" aria-label="Shared Digital Lantern Sky">
+        <!-- Elemen lentera akan dirender secara dinamis melalui script.js -->
+      </div>
+
+      <!-- Dekorasi Bintang Kuning (#fedf85) & Biru (#8aabce) Clay Interaktif -->
+      <div class="play-stars-layer" aria-hidden="true">
+        <div class="clay-star star-yellow star-1" data-star="p1" style="top: 7%; left: 8%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-2" data-star="p2" style="top: 14%; left: 42%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow star-3" data-star="p3" style="top: 6%; right: 18%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2 6.5 6.8 1.8-5.3 4.5 1.7 6.8L12 18l-5.2 3.6 1.7-6.8-5.3-4.5 6.8-1.8z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-4" data-star="p4" style="top: 48%; left: 3%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow star-5" data-star="p5" style="top: 54%; right: 4%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-6" data-star="p6" style="top: 80%; left: 16%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2 6.5 6.8 1.8-5.3 4.5 1.7 6.8L12 18l-5.2 3.6 1.7-6.8-5.3-4.5 6.8-1.8z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow star-7" data-star="p7" style="top: 84%; right: 14%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Dekorasi Awan Fluffy Sekeliling (Sesuai Section Sebelumnya) -->
+      <div class="play-clouds-layer" aria-hidden="true">
+        <div class="play-cloud play-cloud-tl cloud-cluster" data-cloud="tl" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tl.webp" alt="Awan Fluffy 1">
+          </div>
+        </div>
+        <div class="play-cloud play-cloud-tr cloud-cluster" data-cloud="tr" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tr.webp" alt="Awan Fluffy 2">
+          </div>
+        </div>
+        <div class="play-cloud play-cloud-bl cloud-cluster" data-cloud="bl" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-bl.webp" alt="Awan Fluffy 3">
+          </div>
+        </div>
+        <div class="play-cloud play-cloud-br cloud-cluster" data-cloud="br" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-br.webp" alt="Awan Fluffy 4">
+          </div>
+        </div>
+      </div>
+
+      <!-- Bilah Kontrol Atas: Admin Rahasia -->
+      <div class="play-header-controls">
+        <button type="button" class="sky-control-btn btn-admin" id="adminAccessBtn"
+          aria-label="Private Wish Archive Dashboard">
+          <span class="btn-icon"></span>
+          <span class="btn-text font-urca">Sky Admin</span>
+        </button>
+      </div>
+
+      <!-- Bilah Aksi Bawah: Tombol Menerbangkan Lentera & Jumlah Lentera -->
+      <div class="play-bottom-dock">
+        <div class="lantern-sky-count-pill font-urca" id="lanternCountPill">
+          <span class="count-sparkle"></span>
+          <span id="lanternCountText">Gathering lanterns in the sky...</span>
+        </div>
+
+        <button type="button" class="release-lantern-cta font-urca" id="openReleaseModalBtn">
+          <span class="cta-lantern-icon"></span>
+          <span class="cta-text">Release a Lantern</span>
+          <span class="cta-sparkle"></span>
+        </button>
+
+        <p class="sky-whisper-hint font-urca">
+          Click any glowing lantern to read an anonymous wish from around the world.
+        </p>
+      </div>
+
+      <!-- Modal Rilis Lentera Baru (Anonim) -->
+      <div class="lantern-modal-backdrop" id="releaseModalBackdrop" aria-hidden="true">
+        <div class="lantern-glass-modal" role="dialog" aria-modal="true" aria-labelledby="releaseModalTitle">
+          <button type="button" class="modal-close-btn" id="closeReleaseModalBtn"
+            aria-label="Close Release Window">✕</button>
+
+          <div class="modal-lantern-preview">
+            <div class="mini-lantern-glow" id="miniLanternPreview"></div>
+          </div>
+
+          <h3 class="release-modal-title font-urca" id="releaseModalTitle">Release Your Lantern</h3>
+          <p class="release-modal-subtitle font-urca">
+            Write your wish, gratitude, or quiet thought into the shared sky.
+            It will drift freely and remain permanently under the stars — completely anonymous.
+          </p>
+
+          <form id="releaseWishForm" class="release-form">
+            <div class="textarea-wrapper">
+              <textarea id="wishTextInput" class="wish-textarea font-urca" maxlength="280"
+                placeholder="What wish do you whisper to the night sky tonight? (or release freely)..."
+                rows="4"></textarea>
+              <div class="char-count font-urca"><span id="wishCharCount">0</span>/280</div>
+            </div>
+
+            <!-- Pemilih Warna Lentera: Kuning (#fedf85) & Biru (#8aabce) -->
+            <div class="lantern-color-picker-wrap">
+              <span class="color-picker-label font-urca">Choose Your Lantern's Color</span>
+              <div class="color-palette-options" id="colorPaletteOptions" role="radiogroup"
+                aria-label="Pilih warna lentera">
+                <button type="button" class="color-choice-btn is-selected" data-color="yellow"
+                  title="Lentera Kuning (#fedf85)" aria-label="Yellow Latern">
+                  <span class="color-preview-chip"
+                    style="background-color: #fedf85; box-shadow: 0 0 10px #fedf85;"></span>
+                  <span class="color-btn-text font-urca">Yellow</span>
+                </button>
+                <button type="button" class="color-choice-btn" data-color="blue" title="Lentera Biru (#8aabce)"
+                  aria-label="Blue Latern">
+                  <span class="color-preview-chip"
+                    style="background-color: #8aabce; box-shadow: 0 0 10px #8aabce;"></span>
+                  <span class="color-btn-text font-urca">Blue</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="release-privacy-note font-urca">
+              Completely Anonymous • No names, accounts, or tracking.
+            </div>
+
+            <button type="submit" class="submit-wish-btn font-urca" id="submitWishBtn">
+              <span>Release into the Sky</span>
+              <span class="btn-arrow"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal Membaca Harapan Anonim (Saat Lentera Diklik) -->
+      <div class="lantern-modal-backdrop" id="viewModalBackdrop" aria-hidden="true">
+        <div class="lantern-wish-card-modal" role="dialog" aria-modal="true" aria-labelledby="viewModalHeading">
+          <button type="button" class="modal-close-btn" id="closeViewModalBtn" aria-label="Close Wish View">✕</button>
+
+          <span class="view-modal-subtag font-urca" id="viewModalHeading">A WISH UNDER THE SKY</span>
+
+          <blockquote class="view-wish-content font-daith" id="viewWishContentText">
+            "May all the quiet efforts and tiredness of today turn into peace and gentle blessings tomorrow."
+          </blockquote>
+
+          <div class="view-wish-meta font-urca">
+            <span class="meta-time" id="viewWishTimestamp">Just now</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Dashboard Admin Rahasia (Kelola & Hapus Harapan Tidak Pantas) -->
+      <div class="lantern-modal-backdrop" id="adminModalBackdrop" aria-hidden="true">
+        <div class="admin-dashboard-modal" role="dialog" aria-modal="true" aria-labelledby="adminDashboardHeading">
+          <button type="button" class="modal-close-btn" id="closeAdminModalBtn"
+            aria-label="Close Admin Dashboard">✕</button>
+
+          <!-- Layar Verifikasi Passcode Admin -->
+          <div id="adminPasscodeScreen" class="admin-auth-screen">
+            <span class="admin-badge-icon"></span>
+            <h3 class="admin-title font-urca" id="adminDashboardHeading">Private Sky Archive</h3>
+            <p class="admin-desc font-urca">Enter the passcode to manage wishes floating across the sky.</p>
+            <form id="adminLoginForm" class="admin-form">
+              <input type="password" id="adminPasswordInput" class="admin-pass-input font-urca"
+                placeholder="Enter passcode" required autocomplete="off">
+              <button type="submit" class="admin-login-btn font-urca">Access Archive</button>
+              <p id="adminErrorMsg" class="admin-err-msg font-urca" style="display: none;">Incorrect passcode.</p>
+            </form>
+          </div>
+
+          <!-- Layar Dashboard Data Harapan (Setelah Verifikasi) -->
+          <div id="adminDataScreen" class="admin-data-screen" style="display: none;">
+            <div class="data-header">
+              <h3 class="admin-title font-urca" style="margin: 0; text-align: left;">Active Sky Wishes (<span
+                  id="adminWishesCount">0</span>)</h3>
+              <div class="admin-header-actions">
+                <button type="button" class="admin-action-btn font-urca" id="adminCopyJsonBtn"
+                  title="Copy wishes JSON to clipboard">
+                  <span>Copy JSON</span>
+                </button>
+                <button type="button" class="admin-action-btn font-urca" id="adminDownloadJsonBtn"
+                  title="Download updated wishes.json file">
+                  <span>Download Wishes</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="admin-wishes-table-wrap">
+              <table class="admin-wishes-table font-urca">
+                <thead>
+                  <tr>
+                    <th>Time Released</th>
+                    <th>Wish Message</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminWishesTbody">
+                  <!-- Diisi secara dinamis oleh JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==============================================
+         BAGIAN KEENAM (CONTACT SECTION)
+         Memuat:
+         - Sisi Kiri: Informasi kontak langsung, status ketersediaan, avatar branding, dan link sosial media
+         - Sisi Kanan: Form pesan interaktif claymorphic untuk kolaborasi dan sapaan
+         - Bintang & Awan interaktif khas Kerlyn Lawrance
+         - Footer penutup portofolio
+         ============================================== -->
+    <section id="contact" class="contact-section" aria-label="Contact Kerlyn Lawrance">
+
+      <!-- Dekorasi Bintang Clay Interaktif (Kuning #fedf85 & Biru #8aabce) -->
+      <div class="contact-stars-layer" aria-hidden="true">
+        <div class="clay-star star-yellow star-c1" data-star="c1" style="top: 8%; left: 7%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-c2" data-star="c2" style="top: 12%; right: 9%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2.4 6.6L21 11l-5 4.8 1.5 6.8L12 19l-5.5 3.6L8 15.8 3 11l6.6-2.4z" />
+          </svg>
+        </div>
+        <div class="clay-star star-yellow star-c3" data-star="c3" style="bottom: 18%; left: 8%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 2l2 6.5 6.8 1.8-5.3 4.5 1.7 6.8L12 18l-5.2 3.6 1.7-6.8-5.3-4.5 6.8-1.8z" />
+          </svg>
+        </div>
+        <div class="clay-star star-blue star-c4" data-star="c4" style="bottom: 14%; right: 10%;">
+          <svg viewBox="0 0 24 24" class="star-icon">
+            <path d="M12 1.5l2.6 6.8 7.2.5-5.5 4.7 1.8 7.1L12 17l-6.1 3.6 1.8-7.1-5.5-4.7 7.2-.5z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Dekorasi Awan Fluffy Sudut -->
+      <div class="contact-clouds-layer" aria-hidden="true">
+        <div class="contact-cloud contact-cloud-tl cloud-cluster" data-cloud="tl" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tl.webp" alt="Awan Dekorasi Contact 1">
+          </div>
+        </div>
+        <div class="contact-cloud contact-cloud-tr cloud-cluster" data-cloud="tr" title="Awan Fluffy - Sentuh aku!">
+          <div class="cloud-bob-inner">
+            <img src="asset/image/cloud-tr.webp" alt="Awan Dekorasi Contact 2">
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-container">
+
+        <!-- Header Section Contact -->
+        <div class="contact-header">
+          <span class="contact-subtag font-urca">LET'S CONNECT & COLLABORATE</span>
+          <h2 class="contact-main-title font-urca">Get in Touch</h2>
+          <p class="contact-subtitle font-urca">
+          </p>
+        </div>
+
+        <!-- Layout 2 Kolom: Kiri Info Kontak & Avatar, Kanan Form Pesan -->
+        <div class="contact-grid">
+
+          <!-- KOLOM KIRI: Informasi & Saluran Kontak Langsung -->
+          <div class="contact-info-col">
+
+            <!-- Status Ketersediaan Proyek -->
+            <div class="contact-status-card">
+              <span class="status-indicator-dot"></span>
+              <div class="status-text-wrap">
+                <span class="status-label font-urca">CURRENT STATUS</span>
+                <span class="status-desc font-urca">Available for Projects & 2026 Collaborations</span>
+              </div>
+            </div>
+
+            <!-- Kartu Email dengan Tombol Copy 1-Click -->
+            <div class="contact-channel-card email-card" id="emailCard">
+              <div class="card-icon-bubble">
+                <svg viewBox="0 0 24 24" class="contact-svg-icon" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M22 6l-10 7L2 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="card-body-text">
+                <span class="card-label font-urca">Direct Email</span>
+                <a href="mailto:kerlynlawranceee@gmail.com" class="card-value font-urca"
+                  id="emailAddressText">kerlynlawranceee@gmail.com</a>
+              </div>
+              <button type="button" class="copy-email-btn font-urca" id="copyEmailBtn" aria-label="Copy Email Address"
+                title="Copy Email">
+                <span class="copy-btn-text">Copy</span>
+                <svg viewBox="0 0 24 24" class="copy-icon" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" fill="none" stroke="currentColor"
+                    stroke-width="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor"
+                    stroke-width="2" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Kartu Lokasi & Kampus -->
+            <div class="contact-channel-card location-card">
+              <div class="card-icon-bubble">
+                <svg viewBox="0 0 24 24" class="contact-svg-icon" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2" />
+                </svg>
+              </div>
+              <div class="card-body-text">
+                <span class="card-label font-urca">Location & Campus</span>
+                <span class="card-value font-urca">Tangerang / Jakarta, Indonesia • UPH DKV</span>
+              </div>
+            </div>
+
+            <!-- Saluran Media Sosial & Portofolio -->
+            <div class="contact-socials-group">
+              <span class="socials-title font-urca">Find Me Online</span>
+              <div class="social-pills-row">
+                <a href="https://www.instagram.com/kerlynlawrancee?psln=MXI5azQ2NzZrcmgxNg%3D%3D&utm_source=qr"
+                  target="_blank" rel="noopener noreferrer" class="social-pill-btn font-urca"
+                  aria-label="Instagram Kerlyn Lawrance">
+                  <svg viewBox="0 0 24 24" class="social-svg-icon" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor"
+                      stroke-width="2" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor"
+                      stroke-width="2" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" />
+                  </svg>
+                  <span>Instagram</span>
+                </a>
+                <a href="https://wa.me/+6281397526188" target="_blank" rel="noopener noreferrer"
+                  class="social-pill-btn font-urca" aria-label="Whatsapp Kerlyn Lawrance">
+                  <svg viewBox="0 0 24 24" class="social-svg-icon" aria-hidden="true" fill="currentColor">
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                  </svg>
+                  <span>Whatsapp</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Avatar Interaktif Mini dengan Speech Bubble Ramah -->
+            <div class="contact-avatar-badge" id="contactAvatarBadge" title="Say Hi to Kerlyn!">
+              <div class="contact-avatar-bubble font-urca">
+                <span>"Looking forward to hearing from you!"</span>
+              </div>
+              <div class="contact-avatar-img-wrap">
+                <img src="asset/image/branding.webp" alt="Kerlyn Lawrance Illustrated Avatar"
+                  class="contact-branding-img">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- KOLOM KANAN: Form Pesan Interaktif -->
+          <div class="contact-form-col">
+            <div class="contact-form-card">
+              <div class="form-card-header">
+                <span class="form-tag font-urca">SEND A MESSAGE</span>
+                <h3 class="form-title font-urca">Let's start something meaningful</h3>
+              </div>
+
+              <form id="contactDirectForm" class="contact-direct-form"
+                action="https://formsubmit.co/kerlynlawranceee@gmail.com" method="POST"
+                target="formsubmit_target_iframe" novalidate>
+
+                <!-- FormSubmit Configuration Fields -->
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" id="contactEmailSubject"
+                  value="[Portfolio] New message from Kerlyn's Portfolio">
+
+
+                <div class="form-inputs-grid">
+                  <!-- Input Nama -->
+                  <div class="form-group">
+                    <label for="contactSenderName" class="form-field-label font-urca">Your Name</label>
+                    <input type="text" id="contactSenderName" name="name" class="contact-text-input font-urca"
+                      placeholder="How may I call you?" required>
+                  </div>
+
+                  <!-- Input Email -->
+                  <div class="form-group">
+                    <label for="contactSenderEmail" class="form-field-label font-urca">Your Email</label>
+                    <input type="email" id="contactSenderEmail" name="email" class="contact-text-input font-urca"
+                      placeholder="Where can I reach you back?" required>
+                  </div>
+                </div>
+
+                <!-- Input Pesan -->
+                <div class="form-group">
+                  <label for="contactMessageText" class="form-field-label font-urca">Your Message / Idea</label>
+                  <textarea id="contactMessageText" name="message" class="contact-textarea font-urca" rows="5"
+                    placeholder="Tell me about your project, timeline, or just say hi..." required></textarea>
+                </div>
+
+                <!-- Tombol Kirim Pesan -->
+                <button type="submit" class="contact-submit-btn font-urca" id="contactSubmitBtn">
+                  <span class="btn-text">Send Message</span>
+                </button>
+
+                <!-- Pesan Notifikasi Sukses / Error -->
+                <div class="contact-form-notice font-urca" id="contactFormNotice" style="display: none;" role="alert">
+                  <span class="notice-icon"></span>
+                  <span class="notbice-text" id="contactNoticeText"></span>
+                </div>
+
+                <!-- Hidden Iframe untuk pengiriman FormSubmit tanpa reload & bebas CORS file:// -->
+                <iframe name="formsubmit_target_iframe" id="formsubmit_target_iframe"
+                  style="display: none; width: 0; height: 0; border: 0;" aria-hidden="true"></iframe>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Footer Penutup Portofolio -->
+      <footer class="portfolio-footer">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <a href="#home" class="footer-brand-logo font-monotalic">Kerlyn Lawrance</a>
+            <p class="footer-tagline font-urca">Visual Communication Design • Tangerang, Indonesia</p>
+          </div>
+
+          <div class="footer-center">
+            <nav class="footer-nav font-urca" aria-label="Footer Quick Navigation">
+              <a href="#home">Home</a>
+              <a href="#about">About</a>
+              <a href="#journey">Journey</a>
+              <a href="#project">Projects</a>
+              <a href="#wishlight">Wishlight</a>
+              <a href="#contact">Contact</a>
+            </nav>
+          </div>
+
+          <div class="footer-right">
+            <button type="button" class="back-to-top-btn font-urca" id="backToTopBtn" aria-label="Back to Top">
+              <span>Back to Top</span>
+              <span class="arrow-up">↑</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="footer-bottom-bar font-urca">
+          <p>© 2026 Kerlyn Lawrance. All rights reserved.</p>
+        </div>
+      </footer>
+
+    </section>
+  </main>
+
+  <!-- ==============================================
+       FIREBASE SDK & PORTFOLIO SCRIPTS
+       ============================================== -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script src="asset/js/script.js?v=29" defer></script>
+</body>
+
+</html>
